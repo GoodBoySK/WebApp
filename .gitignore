@@ -17,6 +17,11 @@ coverage
 /cypress/videos/
 /cypress/screenshots/
 
+server/bin/
+server/obj/
+server/obj/Container/
+
+*.dll
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -29,3 +34,4 @@ coverage
 
 *.tsbuildinfo
 *.vsidx
+server/obj/
