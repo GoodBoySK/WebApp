@@ -1,22 +1,20 @@
-import './assets/main.css'
-import 'bootstrap/dist/css/bootstrap.css'
-import bootstrap from 'bootstrap/dist/js/bootstrap.js'
+// Import Bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// Import Bootstrap JS (with Popper.js)
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'bootstrap-icons/font/bootstrap-icons.css'
 
 
 import { createApp } from 'vue'
 import App from './App.vue'
-import { createRouter, createWebHashHistory } from 'vue-router';
+import router from './router'
 
 let app = createApp(App);
 
+app.use(router)
+
 app.mount('#app')
 
-let router = createRouter({
-    history: createWebHashHistory(),
-    routes: [
-        {path: '/domov', component: }
-    ]
-});
 
 
-app.use(bootstrap)
