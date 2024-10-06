@@ -1,7 +1,6 @@
 <template>
     <nav class="navbar navbar-expand-lg border-bottom">
         <div class="container-fluid" >
-
             <a href="#" class="navbar-brand">
                 <img src="../assets/logo.png" alt="logo" class="d-inline-block align-text-top" width="40">
             </a>
@@ -44,6 +43,20 @@
     ]
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import "/node_modules/bootstrap/scss/functions";
+@import "/node_modules/bootstrap/scss/variables";
+@import "/node_modules/bootstrap/scss/mixins";
 
+nav {
+    > div {
+    padding: 0rem 20rem;
+    @include media-breakpoint-down(xl) {   
+        padding: 0rem 6rem;
+    }
+    @include media-breakpoint-down(md) {   
+        padding: 0rem 2rem;
+    }
+}
+} 
 </style>
