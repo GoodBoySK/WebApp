@@ -5,7 +5,9 @@ let router = createRouter({
     history: createWebHashHistory(),
     routes: [
         {path: '/', component: Home },
-        {path: '/explore', component: Home }
+        {path: '/explore', component: Home },
+        {path: '/tips', component: Home },
+        {path: '/blog', component: Home }
     ]
 
 });

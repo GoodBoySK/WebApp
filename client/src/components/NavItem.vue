@@ -1,13 +1,14 @@
 <template>
     <li class="nav-item">
         <router-link
-        class="nav-link py-2 fs-5"
+        class="nav-link py-2 fs-5 "
         aria-current="page"
         :to="page.link"
         >
         {{ page.title }}
         </router-link>
     </li>
+    <div class="vr"></div>
 </template>
 
 <script setup>
@@ -19,4 +20,9 @@ let {page}= defineProps(['page'])
 
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+    div.vr:last-child {
+        display: none;
+        visibility: hidden;
+    }
+</style>

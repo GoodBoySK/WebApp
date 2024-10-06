@@ -35,3 +35,14 @@ server/obj/Container/
 *.tsbuildinfo
 *.vsidx
 server/obj/
+server/.vs/ProjectEvaluation/server.metadata.v7.bin
+server/.vs/ProjectEvaluation/server.projects.v7.bin
+server/.vs/server/DesignTimeBuild/.dtbcache.v2
+server/.vs/server/v17/.futdcache.v2
+server/.vs/server/v17/DocumentLayout.json
+server/obj/project.assets.json
+server/obj/project.nuget.cache
+server/obj/server.csproj.nuget.dgspec.json
+server/obj/Debug/net8.0/server.AssemblyInfo.cs
+server/obj/Debug/net8.0/server.AssemblyInfoInputs.cache
+server/obj/Debug/net8.0/server.assets.cache

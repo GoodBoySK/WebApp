@@ -4,14 +4,14 @@
 		id="search"
 	>
 		<div
-			class="px-2 pt-4 pb-4 justify-content-center text-center align-self-center mx-auto align"
+			class="px-2 pt-4 pb-4 justify-content-center text-center align-self-center mx-auto mb-5"
 		>
 			<h1 class="mb-4 mt-2 text-white display-2">Vyhľadaj si recept</h1>
 			<form action="">
-				<div class="input-group mb-3 shadow">
+				<div class="input-group mb-3 shadow input-group-lg">
 					<input
 						placeholder="Hľadať recept"
-						class="form-control p-2"
+						class="form-control px-3 py-3"
 						type="text"
 						name="name"
 						id=""
@@ -50,7 +50,7 @@
 	@include media-breakpoint-down(sm) {
 		max-width: 100%;
 	}
-	min-height: 22rem;
+	min-height: 30rem;
 	> div {
 		max-width: 70%;
 		> * {
