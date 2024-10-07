@@ -1,7 +1,7 @@
 <template>
     <li class="nav-item">
         <router-link
-        class="nav-link py-2 fs-5 "
+        class="nav-link py-2 fs-5 text-nowrap"
         aria-current="page"
         :to="page.link"
         >

@@ -33,16 +33,16 @@
 			</div>
             <form class="input-group w-auto p-2" role="search">
                 <input
-                    class="form-control h-100"
+                    class="form-control py-3 ps-3"
                     type="search"
                     placeholder="Search"
                     aria-label="Search"
                 />
-                <button class="btn btn-primary h-100" type="submit">
+                <button class="btn btn-primary px-4" type="submit">
                     <i class="bi bi-search"></i>
                 </button>
             </form>
-            <button class="btn btn-primary ms-1 p-2 px-4">
+            <button class="btn btn-primary ms-1 py-3 px-4">
                 <i class="bi bi-person-fill d-inline m-1"></i>
                 <p class="d-inline m-1">Prihásiť sa</p>
             </button>
@@ -83,7 +83,7 @@ nav {
 		max-width: 60rem;
 	}
 	> div {
-		padding: 0rem 20rem;
+		padding: 0rem 6rem;
 		@include media-breakpoint-down(xl) {
 			padding: 0rem 6rem;
 		}
