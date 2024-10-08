@@ -1,6 +1,9 @@
 <template>
-	<div class="card text-start rounded-4">
-		<img class="card-img-top" :src="recipe.thumbnailUrl" alt="Thumbnail" />
+	<div class="card text-start rounded-4 overflow-hidden">
+		<div class="h-auto overflow-hidden position-relative">
+			<img class="img-fluid" :src="recipe.thumbnailUrl" alt="Thumbnail" />
+			<div class="overlay"></div>
+		</div>
 		<div class="card-body roboto d-flex flex-column">
 			<h4 class="card-title">{{ recipe.name }}</h4>
 			<a class="card-subtitle flex-grow-1">{{ recipe.autor }}</a>
@@ -44,7 +47,9 @@ $card-height: 26rem;
 	height: $card-height;
 	box-shadow: $box-shadow-sm;
 	transition-duration: $transition-base-duration;
-	h4,a {
+	object-fit: cover;
+	h4,
+	a {
 		transition-property: color;
 	}
 
@@ -55,10 +60,27 @@ $card-height: 26rem;
 	}
 }
 
+.overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	background: linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 1) 0%,
+		rgba(255, 255, 255, 0) 100%
+	);
+	transition-property: opacity;
+}
 .card,
 .card h4,
-.card a 
-.card .card-body{
+.card a,
+.card .card-body,
+.overlay {
 	transition-duration: $transition-base-duration;
 	transition-timing-function: $transition-base-function;
 }
@@ -66,18 +88,23 @@ img {
 	height: 60%;
 	object-fit: cover;
 	object-position: center;
+	z-index: 1;
 }
 
 .card:hover {
 	box-shadow: $box-shadow-lg;
 	cursor: pointer;
-    transform: translateY(-10px); // Lift card up by 10px
-	transform: rotate(2deg);
-	h4,a{
+	transform: translateY(-10px); // Lift card up by 10px
+	transform: rotate(3deg);
+	h4,
+	a {
 		color: $primary;
 	}
 	.card-body {
 		border-top: $primary solid 5px;
+	}
+	.overlay {
+		opacity: 0.3;
 	}
 }
 </style>
