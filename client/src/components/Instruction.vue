@@ -16,6 +16,7 @@ img
     width: 20rem;
     height: 16rem;
 }
+
 .order {
     width: 3rem;;
 }
@@ -28,7 +29,7 @@ img
   position: absolute;
   width: 2px;
   background-color: rgba(186, 186, 186, 0.543);
-  top: 60%;
+  top: calc(50% + 40px);
   bottom: 0;
   left: 1.5rem;
   margin-left: -3px;
@@ -40,8 +41,11 @@ img
   width: 2px;
   background-color: rgba(186, 186, 186, 0.543);
   top: 0;
-  bottom: 60%;
+  bottom: calc(50% + 40px);
   left: 1.5rem;
   margin-left: -3px;
+}
+.no-image {
+    
 }
 </style>

@@ -54,8 +54,6 @@
 	min-height: 30rem;
 	> div {
 		max-width: 70%;
-		> * {
-		}
 	}
 }
 </style>

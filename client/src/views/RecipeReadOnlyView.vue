@@ -87,7 +87,44 @@
 				:instruction="instruction"
 			/>
 		</div>
-        <!-- Komentare -->
+
+		<!-- New ranting/koments -->
+		<div class="m-3 mx-5" v-if="loggedUser">
+			<div class="row my-2">
+				<button class="btn btn-primary col my-auto me-5 rounded-pill w-auto">Pridat do obľúbených receptov <i class="bi bi-heart-fill"></i></button>
+				<div class="col bg-light rounded-4 d-flex">
+					<p class="text-primary h5 my-auto p-4">Ohodnotiť recept</p>
+					<stat-chose class="fs-2"></stat-chose>
+				</div>
+			</div>
+			<form class="row">
+				<textarea class="form-control rounded-4 bg-light my-3 fs-6 p-3" placeholder="Sem napiš text pre svoj komentár..." rows="5"></textarea>
+				<button class="ms-auto btn btn-primary w-auto rounded-pill px-3 py-2 me-4">Odoslať</button>
+			</form>
+		</div>
+		<p v-else class="m-3 text-black-50">Ak chcete napísať komentár alebo pridať si recept medzi obľúbené recepty prosím prihláste sa</p>
+		<!-- Komentare a recenzie-->
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+				<a class="nav-link active" data-bs-toggle="tab" href="#comments" aria-controls="comments" aria-selected="true"
+					>Komentáre</a
+				>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" data-bs-toggle="tab" href="#reviews" aria-controls="reviews"
+					>Recenzie</a
+				>
+			</li>
+		</ul>
+
+		<div class="tab-content bg-body-tertiary">
+			<div id="comments" class="tab-pane fade show active" aria-labelledby="comments" >
+				<comment v-for="(com,index) in comments" :key="index" :commentObject="com"></comment>
+			</div>
+			<div id="reviews" class="tab-pane fade" aria-labelledby="reviews">
+				<review v-for="(rew,index) in reviews" :key="index" :reviewObject="rew"></review>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -95,6 +132,9 @@
 import autorLabel from "@/components/AutorLabel.vue";
 import ingredient from "@/components/Ingredient.vue";
 import instruction from "@/components/Instruction.vue";
+import comment from "@/components/Comment.vue";
+import review from "@/components/Review.vue";
+import statChose from "@/components/StatChose.vue";
 
 let { id } = defineProps(["id"]);
 let recipe = {
@@ -142,6 +182,65 @@ let instructions = [
 	},
 ];
 
+let comments = [
+	{
+		autor: {
+			name: "Michal Šovčík",
+		},
+		text: "Perfektne torta uplne uzasna este 20 rokov osm sa zalizoval ale chybalo tam trochu soli kvoli pocasiu.",
+		pinned: false,
+		createdAt: "19.1.2023 23:55"
+	},
+	{
+		autor: {
+			name: "Michal Šovčík",
+		},
+		text: "Perfektne torta uplne uzasna este 20 rokov osm sa zalizoval ale chybalo tam trochu soli kvoli pocasiu.",
+		pinned: true,
+		createdAt: "19.1.2023 23:55"
+	},
+	{
+		autor: {
+			name: "Michal Šovčík",
+		},
+		text: "Perfektne torta uplne uzasna este 20 rokov osm sa zalizoval ale chybalo tam trochu soli kvoli pocasiu.",
+		pinned: false,
+		createdAt: "19.1.2023 23:55"
+	},
+];
+
+let reviews = [
+	{
+		autor: {
+			name: "Michal Šovčík",
+		},
+		text: "Perfektne torta uplne uzasna este 20 rokov osm sa zalizoval ale chybalo tam trochu soli kvoli pocasiu.",
+		pinned: false,
+		createdAt: "19.1.2023 23:55",
+		score: 3.5
+	},
+	{
+		autor: {
+			name: "Michal Šovčík",
+		},
+		text: "Perfektne torta uplne uzasna este 20 rokov osm sa zalizoval ale chybalo tam trochu soli kvoli pocasiu.",
+		pinned: true,
+		createdAt: "19.1.2023 23:55",
+		score: 2.7
+	},
+	{
+		autor: {
+			name: "Michal Šovčík",
+		},
+		text: "Perfektne torta uplne uzasna este 20 rokov osm sa zalizoval ale chybalo tam trochu soli kvoli pocasiu.",
+		pinned: false,
+		createdAt: "19.1.2023 23:55",
+		score: 3
+	},
+];
+
+let loggedUser = {}
+
 let thumbnailPhotoUrl =
 	"https://gurman.zoznam.sk/wp-content/uploads/2024/09/gurman-zemiakovy-salat-pre-lenive-gazdinky-800x600.jpg";
 </script>
@@ -156,8 +255,7 @@ let thumbnailPhotoUrl =
 .recipe-head {
 	max-height: 40rem;
 }
-.main
-{
-    max-width: 70%;
-} 
+.main {
+	max-width: 70%;
+}
 </style>
