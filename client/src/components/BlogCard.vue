@@ -10,13 +10,6 @@
 					/>
 				</a>
 			</div>
-			<!-- <div class="col-4 overflow-hidden">
-				<img
-					:src="blogPost.thumbnailUrl"
-					alt="thubmbnail"
-					class="overflow-hidden"
-				/>
-			</div> -->
 			<div class="col-8">
 				<div class="card-body px-4 py-3">
 					<p class="card-tag text-primary fw-medium">
