@@ -1,7 +1,6 @@
-namespace server.Dtos 
+namespace server.Dtos;
+
+public class CreateRecipeDTO
 {
-    public class CreateRecipeDTO
-    {
-        public string Name { get; set; }
-    }
+    public string Name { get; set; }
 }

@@ -2,17 +2,17 @@
 using server.Models;
 using System;
 
-namespace server.Services
+namespace server.Services;
+
+public class ImageStorageService(AppDbContext dbContext) : IImageStorageService
 {
-    public class ImageStorageService(AppDbContext dbContext) : IImageStorageService
+    public Task<MediaFile?> StoreImageAsync(IFormFile image)
     {
-        public Task<MediaFile?> StoreImageAsync(IFormFile image)
-        {
             throw new NotImplementedException();
         }
 
-        public async Task<byte[]> RetriveImageAsync(MediaFile mediaFile)
-        {
+    public async Task<byte[]> RetriveImageAsync(MediaFile mediaFile)
+    {
             if (File.Exists(mediaFile.Path))
             {
                 return await File.ReadAllBytesAsync(mediaFile.Path);
@@ -23,11 +23,10 @@ namespace server.Services
             }
 
         }
-    }
+}
 
-    public interface IImageStorageService
-    {
-        public Task<MediaFile?> StoreImageAsync(IFormFile image);
-        public Task<byte[]> RetriveImageAsync(MediaFile mediaFile);
-    }
+public interface IImageStorageService
+{
+    public Task<MediaFile?> StoreImageAsync(IFormFile image);
+    public Task<byte[]> RetriveImageAsync(MediaFile mediaFile);
 }

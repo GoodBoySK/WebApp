@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace server.Models
+namespace server.Models;
+
+public class Tag
 {
-    public class Tag
-    {
-        public int Id { get; set; }
-        [Required]
-        [StringLength(100)]
-        public string Name { get; set; }
-    }
+    public int Id { get; set; }
+    [Required]
+    [StringLength(100)]
+    public string Name { get; set; }
 }
