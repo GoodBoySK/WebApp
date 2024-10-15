@@ -1,9 +1,12 @@
-﻿namespace server.Models;
+﻿using System.ComponentModel.DataAnnotations;
 
-public class MediaFile
+namespace server.Models;
+
+public class MediaFile(string path)
 {
     public int Id { get; set; }
-    public string Path { get; set; }
-    public User CreatedBy { get; set; }
+    [StringLength(100)]
+    public string Path { get; set; } = path;
+    public User? CreatedBy { get; set; }
     public DateTime CreatedDate { get; set; }
 }

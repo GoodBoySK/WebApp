@@ -2,11 +2,12 @@
 
 namespace server.Models;
 
-public class Comment
+public class Comment(User createdBy)
 {
     public Guid Id { get; set; }
     [Required]
-    public User CreatedBy { get; set; }
+    public User CreatedBy { get; set; } = createdBy;
+    [StringLength(500)]
     public string Text { get; set; } = string.Empty;
     [Required]
     public DateTime CreatedAt { get; set; }

@@ -10,4 +10,5 @@ public class DishType
     public string Name { get; set; } = string.Empty;
     [StringLength(500)]
     public string Description { get; set; } = string.Empty;
+
 }
