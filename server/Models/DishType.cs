@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using server.Data;
 
 namespace server.Models;
 
@@ -11,4 +12,5 @@ public class DishType
     [StringLength(500)]
     public string Description { get; set; } = string.Empty;
 
+    public static async Task<DishType> GetDefaultDishType(AppDbContext db) => (await db.DishTypes.FindAsync(1))!;
 }

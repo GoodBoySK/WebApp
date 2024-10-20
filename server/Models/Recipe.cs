@@ -12,16 +12,22 @@ public class Recipe
     
     public DishType DishType { get; set; }
     public MediaFile? SpotPicture { get; set; }
-    public Ingredient[]? Ingredients { get; set; }
-    public Instruction[]? Instructions { get; set; }
+    public List<Ingredient> Ingredients { get; set; } = [];
+    public List<Instruction> Instructions { get; set; } = [];
     public User Author { get; set; }
     public Reviews Reviews { get; set; } = new ();
-    public Comment[]? Comments { get; set; }
-    public Tag[]? Tags { get; set; }
+    public List<Comment> Comments { get; set; } = [];
+    public List<Tag> Tags { get; set; } = [];
 
-    public Recipe(User _author, DishType dishType)
+    public Recipe()
     {
-        Author = _author;
-        DishType = dishType;
+        
     }
+
+    public Recipe(User author, DishType dishType)
+    {
+        DishType = dishType;
+        Author = author;
+    }
+    
 }

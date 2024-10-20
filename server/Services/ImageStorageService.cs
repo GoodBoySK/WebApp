@@ -9,7 +9,15 @@ public class ImageStorageService(AppDbContext dbContext) : IImageStorageService
     public Task<MediaFile?> StoreImageAsync(IFormFile image)
     {
             throw new NotImplementedException();
+    }
+
+    public void DeleteImage(MediaFile mediaFile)
+    {
+        if (File.Exists(mediaFile.Path))
+        {
+            File.Delete(mediaFile.Path);
         }
+    }
 
     public async Task<byte[]> RetriveImageAsync(MediaFile mediaFile)
     {
@@ -22,11 +30,12 @@ public class ImageStorageService(AppDbContext dbContext) : IImageStorageService
                 throw new FileNotFoundException("Image was not found!");
             }
 
-        }
+    }
 }
 
 public interface IImageStorageService
 {
     public Task<MediaFile?> StoreImageAsync(IFormFile image);
     public Task<byte[]> RetriveImageAsync(MediaFile mediaFile);
+    void DeleteImage(MediaFile mediaFile);
 }

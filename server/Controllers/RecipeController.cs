@@ -3,22 +3,25 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using server.Data;
 using server.Dtos;
+using server.Dtos.Recipe;
+using server.Interfaces;
 using server.Models;
 
 namespace server.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class RecipeController(AppDbContext dbContext, UserManager<User> userManager) : ControllerBase
+public class RecipeController(IRecipeService recipeService, UserManager<User> userManager) : ControllerBase
 {
     [HttpGet("{recipeId}")]
     public async Task<IActionResult> Get(Guid recipeId)
     {
-        var recipe = await dbContext.Recipes.FindAsync(recipeId);
+        var recipe = await recipeService.GetRecipeByIdAsync(recipeId);
 
-        if (recipe == null)
+        if (recipe is null)
         {
             return NotFound();
         }
@@ -26,6 +29,14 @@ public class RecipeController(AppDbContext dbContext, UserManager<User> userMana
         return Ok(recipe);
     }
 
+    [HttpGet("all")]
+    public async Task<IActionResult> GetAllWithFilter(Filter? filter)
+    {
+        var recipes = await recipeService.GetAllRecipesFilterAsync(filter);
+        return Ok(recipes);
+    }
+
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateRecipeDTO recipeDTO)
     {
@@ -44,16 +55,21 @@ public class RecipeController(AppDbContext dbContext, UserManager<User> userMana
         }
 
 
-        Recipe instance = new Recipe()
-        {
-            Author = user,
-            Name = recipeDTO.Name,
-        };
-
-        var recipe = await dbContext.Recipes.AddAsync(instance);
-        await dbContext.SaveChangesAsync();
-        return CreatedAtRoute("GetRecipe", recipe.Entity.Id , null);
+        var recipe = await recipeService.CreateRecipeAsync(recipeDTO, user);
+        return CreatedAtRoute("", recipe.Id , null);
     }
+    [Authorize]
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateItem(Guid id, [FromBody] UpdateRecipeDto updateItemDto)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
 
+        await recipeService.UpdateRecipe(updateItemDto, id);
+
+        return Ok();
+    }
 
 }
