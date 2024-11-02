@@ -1,6 +1,6 @@
 namespace server.Dtos;
 
-public class CreateRecipeDTO
+public class CreateRecipeDto
 {
-    public string Name { get; set; }
+    public required string Name { get; set; } 
 }

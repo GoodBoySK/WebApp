@@ -15,10 +15,15 @@ public class TokenService : ITokenService
     public TokenService(IConfiguration config)
     {
         _config = config;
-        _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:Secret"]));
+        _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:Secret"]!));
     }
     public string CreateToken(User user)
     {
+        if (user.Email is null)
+        {
+            throw new ArgumentNullException(nameof(user.Email));
+        }
+
         List<Claim> claims =
         [
             new(JwtRegisteredClaimNames.Email, user.Email),

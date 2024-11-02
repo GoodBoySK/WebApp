@@ -9,6 +9,7 @@ using server.Dtos;
 using server.Dtos.Recipe;
 using server.Interfaces;
 using server.Models;
+using server.Utlis;
 
 namespace server.Controllers;
 
@@ -26,7 +27,7 @@ public class RecipeController(IRecipeService recipeService, UserManager<User> us
             return NotFound();
         }
             
-        return Ok(recipe);
+        return Ok(recipe.toDto());
     }
 
     [HttpGet("all")]
@@ -38,7 +39,7 @@ public class RecipeController(IRecipeService recipeService, UserManager<User> us
 
     [Authorize]
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreateRecipeDTO recipeDTO)
+    public async Task<IActionResult> Create([FromBody] CreateRecipeDto recipeDTO)
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 

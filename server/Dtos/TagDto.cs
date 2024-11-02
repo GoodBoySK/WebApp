@@ -8,7 +8,10 @@ namespace server.Dtos
 
         public Tag ToModel()
         {
-            return new Tag(Name);
+            return new Tag
+            {
+                Name = this.Name
+            };
         }
     }
 }

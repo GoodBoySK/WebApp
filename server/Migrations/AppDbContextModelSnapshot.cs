@@ -195,7 +195,7 @@ namespace server.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
 
                     b.HasDiscriminator().HasValue("Comment");
 
@@ -222,7 +222,7 @@ namespace server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DishTypes");
+                    b.ToTable("DishTypes", (string)null);
                 });
 
             modelBuilder.Entity("server.Models.Ingredient", b =>
@@ -246,7 +246,7 @@ namespace server.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("Ingredients");
+                    b.ToTable("Ingredients", (string)null);
                 });
 
             modelBuilder.Entity("server.Models.Instruction", b =>
@@ -277,7 +277,7 @@ namespace server.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("Instructions");
+                    b.ToTable("Instructions", (string)null);
                 });
 
             modelBuilder.Entity("server.Models.MediaFile", b =>
@@ -303,7 +303,7 @@ namespace server.Migrations
 
                     b.HasIndex("CreatedById");
 
-                    b.ToTable("MediaFiles");
+                    b.ToTable("MediaFiles", (string)null);
                 });
 
             modelBuilder.Entity("server.Models.Recipe", b =>
@@ -344,7 +344,7 @@ namespace server.Migrations
 
                     b.HasIndex("SpotPictureId");
 
-                    b.ToTable("Recipes");
+                    b.ToTable("Recipes", (string)null);
                 });
 
             modelBuilder.Entity("server.Models.Reviews", b =>
@@ -358,7 +358,7 @@ namespace server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Reviews");
+                    b.ToTable("Reviews", (string)null);
                 });
 
             modelBuilder.Entity("server.Models.Tag", b =>
@@ -381,7 +381,7 @@ namespace server.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tags", (string)null);
                 });
 
             modelBuilder.Entity("server.Models.User", b =>

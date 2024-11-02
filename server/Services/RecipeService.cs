@@ -10,7 +10,7 @@ namespace server.Services
 {
     public class RecipeService(AppDbContext dbContext, IImageStorageService imageStorageService, IInstructionService instructionService) : IRecipeService
     {
-        public async Task<Recipe> CreateRecipeAsync(CreateRecipeDTO createRecipeDto, User loggedUser)
+        public async Task<Recipe> CreateRecipeAsync(CreateRecipeDto createRecipeDto, User loggedUser)
         {
             
             var recipe = await dbContext.Recipes.AddAsync(new Recipe
@@ -27,7 +27,15 @@ namespace server.Services
 
         public async Task<Recipe?> GetRecipeByIdAsync(Guid recipeId)
         {
-            return await dbContext.Recipes.FindAsync(recipeId);
+            return await dbContext.Recipes
+                .Include( recipe => recipe.Author )
+                .Include( recipe => recipe.Ingredients)
+                .Include( recipe => recipe.Instructions)
+                .Include( recipe => recipe.SpotPicture)
+                .Include( recipe => recipe.Comments)
+                .Include( recipe => recipe.Reviews)
+                .Include( recipe => recipe.Tags)
+                .FirstOrDefaultAsync(recipe => recipe.Id == recipeId);
         }
 
         public async Task<bool> UpdateRecipe(UpdateRecipeDto recipeDto, Guid id)

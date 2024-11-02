@@ -6,7 +6,7 @@ public class Comment
 {
     public Guid Id { get; set; }
     [Required]
-    public User CreatedBy { get; set; }
+    public required User CreatedBy { get; set; }
     [StringLength(500)]
     public string Text { get; set; } = string.Empty;
     [Required]

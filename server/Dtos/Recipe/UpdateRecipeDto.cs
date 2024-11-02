@@ -7,7 +7,7 @@ namespace server.Dtos.Recipe
     {
         public string Name { get; set; } = "Recipe";
         public string Description { get; set; } = string.Empty;
-        public DishType DishType { get; set; }
+        public required DishType DishType { get; set; }
         public MediaFileDto? SpotPicture { get; set; }
         public List<IngredientDto>? Ingredients { get; set; }
         public List<InstructionDto>? Instructions { get; set; }

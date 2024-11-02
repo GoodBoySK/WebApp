@@ -4,7 +4,7 @@ namespace server.Models;
 
 public class MediaFile(string path)
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
     [StringLength(100)]
     public string Path { get; set; } = path;
     public User? CreatedBy { get; set; }

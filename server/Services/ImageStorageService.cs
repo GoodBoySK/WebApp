@@ -4,7 +4,7 @@ using System;
 
 namespace server.Services;
 
-public class ImageStorageService(AppDbContext dbContext) : IImageStorageService
+public class ImageStorageService() : IImageStorageService
 {
     public Task<MediaFile?> StoreImageAsync(IFormFile image)
     {

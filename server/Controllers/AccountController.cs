@@ -86,6 +86,11 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+        if (userId is null)
+        {
+            return Unauthorized();
+        }
+
         var user = await userManager.FindByIdAsync(userId);
 
         if (user == null)

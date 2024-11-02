@@ -13,7 +13,6 @@ public class IngredientDto
         return new Ingredient
         {
             Name = Name,
-            Description = Description
         };
     }
 }
