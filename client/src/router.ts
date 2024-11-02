@@ -5,7 +5,8 @@ import Tips from './views/Tips.vue';
 import BlogPosts from './views/BlogPosts.vue';
 import RecipeReadOnlyView from './views/RecipeReadOnlyView.vue';
 import BlogReadOnlyView from './views/BlogReadOnlyView.vue';
-
+import LoginView from './views/LoginView.vue';
+import RegisterView from './views/RegisterView.vue';
 let router = createRouter({
     history: createWebHashHistory(),
     routes: [
@@ -13,6 +14,8 @@ let router = createRouter({
         {path: '/explore', component: Explore },
         {path: '/tips', component: Tips },
         {path: '/blog', component: BlogPosts },
+        {path: '/login', component: LoginView , meta: {hideNavbar: true}},
+        {path: '/register', component: RegisterView , meta: {hideNavbar: true}},
         {path: '/recipe/:id', component: RecipeReadOnlyView, props: true},
         {path: '/blog/:id', component: BlogReadOnlyView, props: true},
 

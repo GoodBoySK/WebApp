@@ -42,16 +42,15 @@
                     <i class="bi bi-search"></i>
                 </button>
             </form>
-            <button class="btn btn-primary ms-1 py-3 px-4">
-                <i class="bi bi-person-fill d-inline m-1"></i>
-                <p class="d-inline m-1">Prihásiť sa</p>
-            </button>
+            <account-button></account-button>
 		</div>
 	</nav>
 </template>
 
 <script setup>
 import NavItem from "./NavItem.vue";
+import AccountButton from "./AccountButton.vue";
+
 
 let pages = [
 	{

@@ -12,7 +12,16 @@ namespace server.Controllers;
 [ApiController]
 public class AccountController(UserManager<User> userManager, SignInManager<User> signInManager, ITokenService tokenService) : ControllerBase
 {
-        
+    [Authorize]
+    [HttpGet("loggedUser")]
+    public async Task<IActionResult> GetLoggedUser()
+    {
+        var user = await userManager.GetUserAsync(User);
+
+        return Ok(user);
+    }
+
+
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody]RegisterDto bodyDto)
     {
@@ -21,7 +30,6 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
             return BadRequest(ModelState);
         }
 
-        if (await userManager.FindByEmailAsync(bodyDto.Email) != null)
         {
             return BadRequest("User already exist with this email!!!");
         }

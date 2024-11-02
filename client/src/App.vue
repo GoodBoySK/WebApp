@@ -1,11 +1,6 @@
-<script setup la
-  components: { Home },ng="ts">
-import Navigation from './components/Navigation.vue';
-import { RouterView } from 'vue-router';
-</script>
 
 <template>
-    <navigation ></navigation>
+    <navigation v-if="!hideNabvar"></navigation>
     <router-view></router-view>
     <footer class="blockquote-footer bg-primary  mb-0 mt-3 text-center text-white-50">
       <div class="fs-6 footer-main d-flex justify-content-center py-3">
@@ -21,6 +16,16 @@ import { RouterView } from 'vue-router';
       </div>
     </footer>
 </template>
+
+<script setup>
+import { computed } from 'vue';
+import Navigation from './components/Navigation.vue';
+import { RouterView, useRoute } from 'vue-router';
+
+const route = useRoute();
+const hideNabvar = computed(() => route.meta.hideNavbar === true);
+
+</script>
 
 <style lang="scss">
 @import 'assets/main.scss';

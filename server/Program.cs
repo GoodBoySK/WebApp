@@ -45,8 +45,21 @@ builder.Services.AddSwaggerGen(option =>
     });
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowVueApp",
+        builderCors =>
+        {
+            builderCors.WithOrigins("http://localhost:5173")// Change to your Vue app's URL
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
+
 builder.Services.AddScoped<IImageStorageService, ImageStorageService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IRecipeService, RecipeService>();
+builder.Services.AddScoped<IInstructionService, InstructionService>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
@@ -99,5 +112,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors("AllowVueApp");
 
 app.Run();
