@@ -30,6 +30,7 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
             return BadRequest(ModelState);
         }
 
+        if (await userManager.FindByEmailAsync(bodyDto.Email) != null)
         {
             return BadRequest("User already exist with this email!!!");
         }
