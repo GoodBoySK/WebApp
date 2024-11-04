@@ -7,7 +7,9 @@ import RecipeReadOnlyView from './views/RecipeReadOnlyView.vue';
 import BlogReadOnlyView from './views/BlogReadOnlyView.vue';
 import LoginView from './views/LoginView.vue';
 import RegisterView from './views/RegisterView.vue';
-let router = createRouter({
+import RecipeEdit from './views/RecipeEdit.vue';
+
+let router = createRouter({ 
     history: createWebHashHistory(),
     routes: [
         {path: '/', component: Home },
@@ -17,6 +19,7 @@ let router = createRouter({
         {path: '/login', component: LoginView , meta: {hideNavbar: true}},
         {path: '/register', component: RegisterView , meta: {hideNavbar: true}},
         {path: '/recipe/:id', component: RecipeReadOnlyView, props: true},
+        {path: '/recipe/:id/edit', component: RecipeEdit, props: true},
         {path: '/blog/:id', component: BlogReadOnlyView, props: true},
 
     ]

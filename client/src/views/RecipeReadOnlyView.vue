@@ -137,6 +137,7 @@ import review from "@/components/Review.vue";
 import statChose from "@/components/StatChose.vue";
 
 let { id } = defineProps(["id"]);
+
 let recipe = {
 	title: "Chutný a jednoduchý zemiakový šalát – perfektný recept pre lenivé gazdinky",
 	tags: ["Mnam", "Ham", "Pam"],

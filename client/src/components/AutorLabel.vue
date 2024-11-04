@@ -2,7 +2,7 @@
     <a href="#">{{ autor.name }}</a>
 </template>
 
-<script setup>
+<script setup lang="ts">
 let {autor} = defineProps(['autor']);
 </script>
 
