@@ -59,7 +59,7 @@ export interface Recipe{
     Id: string;
     Name: string;
     Description: string;
-
+    Time: number;
     Difficulty: number;
     Portions: number;
     DishType?: DishType ;

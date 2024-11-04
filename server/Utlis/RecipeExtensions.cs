@@ -9,10 +9,12 @@ namespace server.Utlis
 {
     public static class RecipeExtensions
     {
-        public static RecipeDto toDto(this Recipe recipe) =>
-            new RecipeDto{
+        public static RecipeDto ToDto(this Recipe recipe) =>
+            new()
+            {
                 Author = recipe.Author,
                 Description = recipe.Description,
+                Difficulty = recipe.Difficulty,
                 DishType = recipe.DishType,
                 Name = recipe.Name,
                 Comments = recipe.Comments,
@@ -22,6 +24,8 @@ namespace server.Utlis
                 Reviews = recipe.Reviews,
                 SpotPicture = recipe.SpotPicture,
                 Tags = recipe.Tags,
+                Time = recipe.Time,
+                Portions = recipe.Portions,
             };
         
     }

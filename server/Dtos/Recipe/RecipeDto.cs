@@ -15,6 +15,10 @@ namespace server.Dtos.Recipe
     public required string Name { get; set; }
     [StringLength(500)]
     public required string Description { get; set; }
+
+    public int Time {get; set; } //In minutes
+    public int Portions {get; set; }
+    public int Difficulty { get; set; }
     
     public required DishType DishType { get; set; }
     public MediaFile? SpotPicture { get; set; }

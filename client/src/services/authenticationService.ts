@@ -6,10 +6,38 @@ export interface UserData{
     userName: string
 }
 
-export const authState = reactive({
-    isLoggedIn: false,
-    jwt: "", 
-});
+interface AuthState{
+    isLoggedIn: boolean,
+    jwt: string
+}
+
+let authState = reactive<AuthState>(setup());
+
+function setup() : AuthState {
+    const data = sessionStorage.getItem('authState');
+    
+    if (data) {
+        try {
+            return JSON.parse(data);
+        } catch (error) {
+            console.error("Parsing of save authState failed!!!");
+        }
+    }
+    
+    return {
+        isLoggedIn: false,
+        jwt: "", 
+    };
+};
+
+export function setAuthState(newAuthState: AuthState) {
+    authState = newAuthState;
+    sessionStorage.setItem('authState', JSON.stringify(newAuthState));
+}
+
+export function getAuthState() {
+    return authState;
+}
 
 export async function getLoggedUserInfo() {
     try {

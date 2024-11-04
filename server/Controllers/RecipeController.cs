@@ -27,7 +27,7 @@ public class RecipeController(IRecipeService recipeService, UserManager<User> us
             return NotFound();
         }
             
-        return Ok(recipe.toDto());
+        return Ok(recipe.ToDto());
     }
 
     [HttpGet("all")]

@@ -7,16 +7,16 @@
 			<div class="col">
 				<div class="d-flex">
 					<tag
-						v-for="(tag, index) in recipe.tags"
+						v-for="(tag, index) in recipe.Tags"
 						:key="index"
                         :tag = tag
                         editable
 					>
 					</tag>
 				</div>
-				<h1 class="fw-bold">{{ recipe.title }}</h1>
-				<p class="">{{ recipe.description }}</p>
-				<autor-label :autor="recipe.autor"></autor-label>
+				<h1 class="fw-bold">{{ recipe.Name }}</h1>
+				<p class="">{{ recipe.Description }}</p>
+				<autor-label :autor="recipe.Author"></autor-label>
 
 				<div class="justify-content-evenly d-flex fs-6 text-center">
 					<div class="col">
@@ -27,7 +27,7 @@
 						</p>
 						<div class="">
 							<i class="bi bi-clock-history d-inline pe-1"></i>
-							<p class="d-inline">{{ recipe.time + " min" }}</p>
+							<p class="d-inline">{{ recipe.Time + " min" }}</p>
 						</div>
 					</div>
 					<div class="col">
@@ -38,7 +38,7 @@
 						</p>
 						<div>
 							<i class="fa-solid fa-bowl-food d-inline pe-2"></i>
-							<p class="d-inline">{{ recipe.portions }}</p>
+							<p class="d-inline">{{ recipe.Portions }}</p>
 						</div>
 					</div>
 					<div class="col">
@@ -49,12 +49,12 @@
 						</p>
 						<div>
 							<i
-								v-for="n in recipe.dificulty"
+								v-for="n in recipe.Difficulty"
 								:key="n"
 								class="fa-solid fa-lemon"
 							></i>
 							<i
-								v-for="n in 5 - recipe.dificulty"
+								v-for="n in 5 - recipe.Difficulty"
 								:key="n"
 								class="fa-regular fa-lemon"
 							></i>
@@ -84,7 +84,7 @@
 		<div>
 			<instruction
 				v-for="instruction in instructions"
-				:key="instruction.orderNum"
+				:key="instruction.Position"
 				:instruction="instruction"
 			/>
 		</div>
@@ -145,22 +145,21 @@ import { ref } from "vue";
 import type {Instruction, Recipe, Review, Comment} from "@/services/recipeService"
 let { id } = defineProps(["id"]);
 
-let recipe = reactive<Recipe>({Id: "", Name: "", Description: "",Difficulty: 0, Portions: 0});
+let recipe = reactive<Recipe>({Id: "", Name: "", Description: "",Difficulty: 0, Portions: 0, Time:0});
 let instructions = reactive<Instruction[]>([]);
 let comments = reactive<Comment[]>([]);
 let reviews = reactive<Review[]>([]);
 let thumbnailPhotoUrl = ref("");
-
 let loggedUser = reactive({});
-
 let loading = ref(true);
+
 onMounted(async () => {
     console.log("begin");
     recipe = await getRecipeById(id);
     instructions = recipe.Instructions ?? [];
     comments = recipe.Comments ?? [];
-    reviews = recipe..AllReviews;
-    thumbnailPhotoUrl.value = getUrlOfImage(recipe.SpotPicture.Id);
+    reviews = recipe.Reviews?.AllReviews ?? [];
+    thumbnailPhotoUrl.value = getUrlOfImage(recipe.SpotPicture?.Id + "");
     loggedUser = getLoggedUserInfo();
     loading.value = false;
 });
@@ -168,6 +167,7 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
+
 .thumbnail {
 	object-fit: cover;
 	object-position: center;
@@ -180,4 +180,5 @@ onMounted(async () => {
 .main {
 	max-width: 70%;
 }
+
 </style>

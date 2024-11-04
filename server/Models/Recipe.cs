@@ -9,7 +9,9 @@ public class Recipe
     public string Name { get; set; } = "Recipe";
     [StringLength(500)]
     public string Description { get; set; } = string.Empty;
-    
+    public int Time { get; set; }// In minutes
+    public int Portions { get; set; }
+    public int Difficulty { get; set; }
     public required DishType DishType { get; set; }
     public MediaFile? SpotPicture { get; set; }
     public List<Ingredient> Ingredients { get; set; } = [];
