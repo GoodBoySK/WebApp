@@ -1,56 +1,34 @@
-import { reactive } from "vue";
-import { setAuthToken } from "./apiService";
 import apiService from "./apiService";
+import { jwtDecode } from "jwt-decode";
 
 export interface UserData{
+    id: string,
     userName: string
 }
 
-interface AuthState{
-    isLoggedIn: boolean,
-    jwt: string
+interface TokenAnswear
+{
+    email: string;
+    logInToken: string;
+    refreshToken: string;
+} 
+
+export function isLogged() : boolean {
+    return sessionStorage.getItem('jwt') != null;
 }
 
-let authState = reactive<AuthState>(setup());
-
-function setup() : AuthState {
-    const data = sessionStorage.getItem('authState');
-    
-    if (data) {
-        try {
-            return JSON.parse(data);
-        } catch (error) {
-            console.error("Parsing of save authState failed!!!");
-        }
-    }
-    
-    return {
-        isLoggedIn: false,
-        jwt: "", 
-    };
-};
-
-export function setAuthState(newAuthState: AuthState) {
-    authState = newAuthState;
-    sessionStorage.setItem('authState', JSON.stringify(newAuthState));
-}
-
-export function getAuthState() {
-    return authState;
-}
 
 export async function getLoggedUserInfo() {
     try {
-        let user = await apiService.get<UserData>("account/loggedUser", {})
+        let user = await apiService.get<UserData>("account/loggedUser")
         return user;
     } catch (error) {
-        console.error("User is not logged");
+        console.error("User is not logged\n" + error);
         return {};
     }
 }
 
 export async function register(email: string, name: string, password: string) {
-
      try {
         await apiService.post("account/register", {
             userName: name,
@@ -59,7 +37,6 @@ export async function register(email: string, name: string, password: string) {
         })
         return true;
     } catch (error) {
-        
         console.error("User was not able to register");
         return false;
     }
@@ -67,31 +44,38 @@ export async function register(email: string, name: string, password: string) {
 }
 
 export async function logIn(email: string, password: string ){
-    authState.isLoggedIn = true;
-
     try {
-        let respones = await apiService.post("account/login", {
+        let respones = await apiService.post<TokenAnswear>("account/login", {
             email: email,
             password: password
         })
 
-        authState.jwt = respones.token;
-    
-        setAuthToken(authState.jwt);
+        if (respones && respones.logInToken)
+            sessionStorage.setItem('jwt', respones.logInToken);
 
         return true;
     } catch (error) {
-        
-        console.error("User was not logged in (invalid credentials)");
+        console.error("User was not logged in !!!\n" + error);
         return false;
     }
-   
+}
 
+export function logOut() {
+    sessionStorage.removeItem('jwt');
 
 }
-export function logOut() {
-    authState.isLoggedIn = false;
-    authState.jwt = ""
 
-    setAuthToken("")
+ async function refreshAccessToken() {
+    ;
+}
+
+export function IsTokenValid(jwtToken: string) : boolean {
+    if (!jwtToken) return false;
+    
+    const data = jwtDecode(jwtToken);
+    const currentTime = Date.now() / 1000;
+    
+    if (!data.exp) return true;
+
+    return data.exp > currentTime;
 }

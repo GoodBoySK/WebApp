@@ -11,7 +11,7 @@
                     <label class="h6" >Heslo</label>
                     <input type="password" class="form-control py-3" :class="{ 'is-valid': wrongCredentials.value, 'is-invalid': !wrongCredentials.value && form.password }" v-model="form.password">
                 </div>
-                <router-link  class="d-block">Zabudol som heslo</router-link>
+                <router-link  class="d-block" to="/">Zabudol som heslo</router-link>
                 <router-link class="d-block" to="/register">Niesi regitrovaný? Zaregistruj sa tu</router-link>
                 <button type="submit" class="btn btn-primary m-2 ms-auto px-4 py-2 ">Prihlásiť sa</button>
             </form>
@@ -21,7 +21,7 @@
 
 <script setup>
 import { RouterLink, useRouter } from 'vue-router';
-import {authState, logIn} from '@/services/authenticationService';
+import {logIn} from '@/services/authenticationService';
 import { ref } from 'vue';
 
 let form = {

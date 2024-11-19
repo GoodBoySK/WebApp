@@ -2,75 +2,75 @@ import apiService from "./apiService";
 import type { UserData } from "./authenticationService";
 
 export interface MediaFile{
-    Id: number;
+    id: number;
 
 }
 
 export interface DishType{
-    Id: number;
-    Name: string;
-    Description: string;
+    id: number;
+    name: string;
+    description: string;
 }
 
 export interface MediaFile {
-    Id: number;
+    id: number;
 }
 
 export interface Ingredient{
-    Name: string;
-    Description: string;
+    name: string;
+    description: string;
 }
 
 export interface Instruction{
-    Position: number;
-    Description: string;
-    Media: MediaFile;
+    position: number;
+    description: string;
+    media: MediaFile;
 }
 
 export interface Reviews {
-    Id: string;
-    AllReviews: Review[];
-    Rating: number;
+    id: string;
+    allReviews: Review[];
+    rating: number;
 }
 
 export interface Review {
-    Rating: number;
+    rating: number;
 
-    Id: string;
-    CreatedBy: UserData;
-    Text: string;
-    CreatedAt: Date;
-    Parent: Review; 
+    id: string;
+    createdBy: UserData;
+    text: string;
+    createdAt: Date;
+    parent: Review; 
 }
 
 export interface Comment {
-    Id: string;
-    CreatedBy: UserData;
-    Text: string;
-    CreatedAt: Date;
-    Parent: Comment; 
+    id: string;
+    createdBy: UserData;
+    text: string;
+    createdAt: Date;
+    parent: Comment; 
 }
 
 export interface Tag {
-    Name: string;
+    name: string;
 }
 
 export interface Recipe{
-    Id: string;
-    Name: string;
-    Description: string;
-    Time: number;
-    Difficulty: number;
-    Portions: number;
-    DishType?: DishType ;
-    SpotPicture?: MediaFile;
-    Ingredients?: Ingredient[];
-    Instructions?: Instruction[];
+    id: string;
+    name: string;
+    description: string;
+    time: number;
+    difficulty: number;
+    portions: number;
+    dishType?: DishType ;
+    spotPicture?: MediaFile;
+    ingredients?: Ingredient[];
+    instructions?: Instruction[];
     
-    Author?: UserData;
-    Reviews?: Reviews;
-    Comments?: Comment[];
-    Tags?: Tag[];
+    author?: UserData;
+    reviews?: Reviews;
+    comments?: Comment[];
+    tags?: Tag[];
 
 
 }
@@ -78,7 +78,7 @@ export interface Recipe{
 export async function getRecipeById(id : number)
 {
 
-    let response = await apiService.get<Recipe>(`recipe/${id}`, {});
+    let response = await apiService.get<Recipe>(`recipe/${id}`);
 
     return response;
 }

@@ -1,24 +1,24 @@
 <template>
     <div>
-        <button v-if="!authState.isLoggedIn" class="btn btn-primary ms-1 py-3 px-4" @click="login">
+        <button v-if="!isLoggedLocal" class="btn btn-primary ms-1 py-3 px-4" @click="login">
             <i class="bi bi-person-fill d-inline m-1"></i>
             <p class="d-inline m-1">Prihásiť sa</p>
         </button>
-        <button v-if="authState.isLoggedIn" class="btn btn-outline-primary">
+        <button v-if="isLoggedLocal" class="btn btn-outline-primary">
             <p class="d-inline m-1">{{ user.userName }}</p>            
         </button>
     </div>
 </template>
 
 <script setup>
-import { authState, getLoggedUserInfo } from "@/services/authenticationService";
-import { onMounted, ref, toRaw } from "vue";
+import { getLoggedUserInfo, isLogged } from "@/services/authenticationService";
+import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
-let user = ref({});
 const router = useRouter();
 
-const gg = ref(true);
+let user = ref({});
+const isLoggedLocal = ref(true);
 
 function login(){
 	router.push('/login')
@@ -27,19 +27,15 @@ function login(){
 onMounted(async () => {
 
     try {
-    if (authState.isLoggedIn) {
-        const response = await getLoggedUserInfo();
-        user.value = response;
-    }
-  } catch (error) {
-    console.error("Error loading data:", error)
-  }
+        isLoggedLocal.value = await isLogged()
 
-    console.log(toRaw(user.value));
-    console.log( authState.isLoggedIn );
-    console.log(user != undefined );
-    console.log(  user.value != null);
-    gg.value = !gg.value;
+        if (isLoggedLocal.value) {
+            const response = await getLoggedUserInfo();
+            user.value = response;
+        }
+    } catch (error) {
+    console.error("Error loading data:", error)
+    }
 });
 </script>
 

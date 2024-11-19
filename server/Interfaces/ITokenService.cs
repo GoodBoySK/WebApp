@@ -5,5 +5,7 @@ namespace server.Interfaces;
 
 public interface ITokenService
 {
-    public string CreateToken(User user);
+    Task RevokeRefreshToken(User user);
+    Task<(string accessToken, string refreshToken)> GenerateTokens(User user);
+    Task<(string accessToken, string newRefreshToken)> RefreshTokens(User user, string refreshToken);
 }

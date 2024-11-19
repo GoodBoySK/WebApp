@@ -52,7 +52,8 @@ builder.Services.AddCors(options =>
         {
             builderCors.WithOrigins("http://localhost:5173")// Change to your Vue app's URL
                 .AllowAnyMethod()
-                .AllowAnyHeader();
+                .AllowAnyHeader()
+                .AllowCredentials();
         });
 });
 

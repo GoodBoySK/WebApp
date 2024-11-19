@@ -73,10 +73,13 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
         var result = await signInManager.CheckPasswordSignInAsync(user, model.Password, false);
         if (!result.Succeeded) return Unauthorized("Invalid Password");
 
+        var (loginToken, refreshToken) = await tokenService.GenerateTokens(user);
+
         return Ok(new LoggedUserDataDto
         {
             Email = user.Email ?? string.Empty,
-            Token = tokenService.CreateToken(user)
+            LogInToken= loginToken,
+            RefreshToken = refreshToken
         });
     }
 
