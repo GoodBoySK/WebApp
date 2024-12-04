@@ -6,6 +6,7 @@ namespace server.Dtos.Recipe
     public class UpdateRecipeDto
     {
         [Required]
+        [MinLength(1)]
         public string Name { get; set; } = "Recipe";
         public string Description { get; set; } = string.Empty;
         [Required]

@@ -41,7 +41,7 @@
 									>
 										TRVANIE
 									</label>
-									<input id="timeInput" placeholder="minúty..." type="number" class="form-control" v-model="recipe.time">
+									<input id="timeInput" placeholder="minúty..." type="number" class="form-control" min="0" v-model="recipe.time">
 								</div>
 								<p class="input-group-text text-center mb-0">min</p>
 							</div>
@@ -54,7 +54,7 @@
 									>
 										Porcie
 									</label>
-									<input id="portionsInput" class="form-control" v-model="recipe.portions" type="number"></input>
+									<input id="portionsInput" class="form-control" v-model="recipe.portions" type="number" min="0"></input>
 								</div>
 							</div>
 							<div class="col input-group">
@@ -152,13 +152,18 @@ onMounted(async () => {
     loading.value = false;
 });
 
+function valid() {
+	if (recipe.name == "") return false;
+
+	return true;
+}
 async function save() {
-	console.log(recipe.spotPicture)
+	if (!valid()) return;
+	
 	if (recipe.spotPicture.image) {
 		recipe.spotPicture.id = await saveImg(recipe.spotPicture.image);
 	}
 
-	console.log(instructions?.length)
 	for(let i = 0;instructions && i < instructions?.length; i++) {
 		let x = instructions[i];
 		console.log(i)
