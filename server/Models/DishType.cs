@@ -3,6 +3,7 @@ using server.Data;
 
 namespace server.Models;
 
+
 public class DishType
 {
     public int Id { get; set; }

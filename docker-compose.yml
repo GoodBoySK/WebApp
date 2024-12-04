@@ -12,6 +12,8 @@ services:
     ports:
       - 8080:8080
       - 80:80
+    volumes:
+      - images:/app/imgs
     environment:
       ASPNETCORE_ENVIRONMENT: Development
   sqlserver:
@@ -33,4 +35,6 @@ networks:
 
 volumes:
   sqlserver_data:
-    driver: local    
+    driver: local
+  images:
+    driver: local        

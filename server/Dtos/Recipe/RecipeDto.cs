@@ -21,13 +21,13 @@ namespace server.Dtos.Recipe
     public int Difficulty { get; set; }
     
     public required DishType DishType { get; set; }
-    public MediaFile? SpotPicture { get; set; }
-    public List<Ingredient> Ingredients { get; set; } = [];
-    public List<Instruction> Instructions { get; set; } = [];
+    public MediaFileDto? SpotPicture { get; set; }
+    public List<IngredientDto> Ingredients { get; set; } = [];
+    public List<InstructionDto> Instructions { get; set; } = [];
     public required User Author { get; set; }
     public Reviews Reviews { get; set; } = new ();
-    public List<Comment> Comments { get; set; } = [];
-    public List<Tag> Tags { get; set; } = [];
+    public List<CommentDto> Comments { get; set; } = [];
+    public List<TagDto> Tags { get; set; } = [];
     
 
     }

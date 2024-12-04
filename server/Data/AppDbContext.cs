@@ -15,11 +15,4 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
     public DbSet<Tag> Tags { get; set; }
     public DbSet<DishType> DishTypes { get; set; }
 
-
-    protected override void OnModelCreating(ModelBuilder builder)
-    {
-        base.OnModelCreating(builder);
-
-
-    }
 }

@@ -13,11 +13,11 @@ public class Recipe
     public int Portions { get; set; }
     public int Difficulty { get; set; }
     public required DishType DishType { get; set; }
-    public MediaFile? SpotPicture { get; set; }
+    public required MediaFile SpotPicture { get; set; }
     public List<Ingredient> Ingredients { get; set; } = [];
     public List<Instruction> Instructions { get; set; } = [];
     public required User Author { get; set; }
-    public Reviews Reviews { get; set; } = new ();
+    public required Reviews Reviews { get; set; }
     public List<Comment> Comments { get; set; } = [];
     public List<Tag> Tags { get; set; } = [];
 

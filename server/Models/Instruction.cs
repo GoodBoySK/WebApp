@@ -8,6 +8,6 @@ public class Instruction
     public int Position { get; set; } = 0;
     [StringLength(500)]
     public string Description { get; set; } = string.Empty;
-    public MediaFile? Media { get; set; }
+    public required MediaFile Media { get; set; }
 
 }

@@ -5,6 +5,7 @@ using server.Dtos;
 using server.Dtos.Recipe;
 using server.Interfaces;
 using server.Models;
+using server.Utlis;
 
 namespace server.Services
 {
@@ -17,7 +18,10 @@ namespace server.Services
             {
                 Name = createRecipeDto.Name,
                 Author = loggedUser,
-                DishType = await DishType.GetDefaultDishType(dbContext)
+                DishType = await DishType.GetDefaultDishType(dbContext),
+                Reviews = new Reviews(),
+                SpotPicture = new MediaFile(""),
+
             });
 
             await dbContext.SaveChangesAsync();
@@ -28,59 +32,72 @@ namespace server.Services
         public async Task<Recipe?> GetRecipeByIdAsync(Guid recipeId)
         {
             return await dbContext.Recipes
-                .Include( recipe => recipe.Author )
+                .Include( recipe => recipe.Author)
+                .Include( recipe => recipe.DishType)
                 .Include( recipe => recipe.Ingredients)
                 .Include( recipe => recipe.Instructions)
+                    .ThenInclude( instr => instr.Media)
                 .Include( recipe => recipe.SpotPicture)
-                .Include( recipe => recipe.Comments)
-                .Include( recipe => recipe.Reviews)
+                .Include( recipe => recipe.Comments).ThenInclude(comment => comment.CreatedBy)
+                .Include( recipe => recipe.Reviews).ThenInclude(reviews => reviews.AllReviews)
                 .Include( recipe => recipe.Tags)
                 .FirstOrDefaultAsync(recipe => recipe.Id == recipeId);
         }
 
+        public async Task<bool> IsOwner(Guid recipeId, User user)
+        {
+            var recipe = await dbContext.Recipes.Include(recipe => recipe.Author).FirstOrDefaultAsync(x => x.Id == recipeId);
+
+            if (recipe == null) return false;
+
+            return recipe.Author.Id == user.Id;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="recipeDto"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="MediaFileNotFoundException"></exception>
         public async Task<bool> UpdateRecipe(UpdateRecipeDto recipeDto, Guid id)
         {
             var recipe = await dbContext.Recipes
-                .Include(r => r.Instructions)
+                .Include(r => r.Instructions).ThenInclude(x => x.Media)
                 .Include(recipe => recipe.SpotPicture)
+                .ThenInclude(mediaFile => mediaFile.CreatedBy)
+                .Include(recipe => recipe.Author)
                 .Include(recipe => recipe.Ingredients)
+                .Include(recipe => recipe.Tags)
                 .FirstOrDefaultAsync(r => r.Id == id);
 
-            var dishType = await dbContext.DishTypes.FindAsync(recipeDto.DishType.Id);
-
+            var dishType = await dbContext.DishTypes.FindAsync(recipeDto.DishTypeId);
+             
             if (recipe == null || dishType == null) return false;
-
-
-
 
             recipe.Name = recipeDto.Name;
             recipe.Description = recipeDto.Description;
             recipe.DishType = dishType;
 
             //################## SPOT PICTURE ##################
+            // If true than there is a new picture diffrent from old one
             if (
-                (recipe.SpotPicture is not null 
-                 && recipeDto.SpotPicture is not null 
-                 && recipe.SpotPicture?.Id != recipeDto.SpotPicture?.Id) 
-                || (recipe.SpotPicture is null && recipeDto.SpotPicture is null))
+                recipe.SpotPicture.Id != recipeDto.SpotPicture.Id 
+                )
             {
-                MediaFile? newMediaFile = null;
-                // If there is a old picture remove it
-                if (recipe.SpotPicture != null)
-                {
-                    imageStorageService.DeleteImage(recipe.SpotPicture);
-                }
-                // If there is a new picture add it
-                if (recipeDto.SpotPicture?.Image != null)
-                {
-                    newMediaFile = await imageStorageService.StoreImageAsync(recipeDto.SpotPicture.Image);
-                } 
-                // Update the spot picture (if new null than pesistant also null)
+                // new picture should be already added so just get it from db
+                var newMediaFile = await dbContext.MediaFiles.FindAsync(recipeDto.SpotPicture.Id) ?? throw new MediaFileNotFoundException();
+
+                // remove old picture
+                imageStorageService.DeleteImage(recipe.SpotPicture);
+                dbContext.MediaFiles.Remove(recipe.SpotPicture);
+
+                // Update the spot picture (if new null than pesista
                 recipe.SpotPicture = newMediaFile;
                     
             }
 
-            ////################## INGREDIENTS ##################
+            ////################## INSTRUCTION ##################
             // Remove deleted instructions
             foreach (var oldInstruction in recipe.Instructions)
             {
@@ -97,14 +114,14 @@ namespace server.Services
                 recipe.Instructions ??= [];
                 foreach (var newInstructionDto in recipeDto.Instructions)
                 {
-                    var newIntrstruction = await instructionService.Create(newInstructionDto);
+                    var newIntrstruction = await instructionService.Create(newInstructionDto, recipe.Author);
                     recipe.Instructions.Add(newIntrstruction);
                 }
             }
 
             //################## INGREDIENTS ##################
             // Remove all ingredients
-            recipe.Ingredients.Clear();
+            dbContext.Ingredients.RemoveRange(recipe.Ingredients);
 
             // Add new ingredients
             if (recipeDto.Ingredients != null)
@@ -114,7 +131,7 @@ namespace server.Services
 
             //################## TAGS ##################
             // Remove all tags
-            recipe.Tags.Clear();
+            dbContext.Tags.RemoveRange(recipe.Tags);
 
             // Add new tags
             if (recipeDto.Tags != null)
@@ -126,18 +143,51 @@ namespace server.Services
             return true;
         }
 
-        public async Task<ICollection<Recipe>> GetAllRecipesFilterAsync(Filter? filter)
+        public async Task<ICollection<Recipe>> GetAllRecipesFilterAsync(Filter? filter, string userId)
         {
-            if (filter == null)
+            IQueryable<Recipe> list = dbContext.Recipes
+                .Include(recipe => recipe.Author)
+                .Include(recipe => recipe.DishType)
+                .Include(recipe => recipe.Ingredients)
+                .Include(recipe => recipe.Instructions).ThenInclude(instr => instr.Media)
+                .Include(recipe => recipe.SpotPicture)
+                .Include(recipe => recipe.Comments).ThenInclude(comment => comment.CreatedBy)
+                .Include(recipe => recipe.Reviews).ThenInclude(reviews => reviews.AllReviews)
+                .Include(recipe => recipe.Tags)
+               ;
+
+            if (filter is null)
             {
-                return await dbContext.Recipes.ToListAsync();
+                return await list.ToListAsync();
             }
 
-            if (filter.NameFilter == null)
+            if (filter.NameFilter is not null)
             {
-                return await dbContext.Recipes.ToListAsync();
+                list = list.Where(x => x.Name.Contains(filter.NameFilter));
             }
-            return await dbContext.Recipes.Where(r => r.Name.Contains(filter.NameFilter)).ToListAsync();
+
+            if (filter.OnlyMy is not null && filter.OnlyMy == true)
+            {
+                list = list.Where(x => x.Author.Id == userId);
+            }
+
+            return await list.ToListAsync();
+        }
+
+        public async Task<bool> DeleteRecipe(Guid id)
+        {
+            var recipe = await GetRecipeByIdAsync(id);
+
+            if (recipe == null)
+            {
+                return false;
+            }
+
+            dbContext.Recipes.Remove(recipe);
+
+            await dbContext.SaveChangesAsync();
+
+            return true;
         }
     }
 }

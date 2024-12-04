@@ -30,10 +30,17 @@ public class RecipeController(IRecipeService recipeService, UserManager<User> us
         return Ok(recipe.ToDto());
     }
 
-    [HttpGet("all")]
-    public async Task<IActionResult> GetAllWithFilter(Filter? filter)
+    [HttpPost("all")]
+    public async Task<IActionResult> GetAllWithFilter([FromBody]Filter filter)
     {
-        var recipes = await recipeService.GetAllRecipesFilterAsync(filter);
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        if (userId == null && filter.OnlyMy == true)
+        {
+            return Unauthorized();
+        }
+
+        var recipes = await recipeService.GetAllRecipesFilterAsync(filter, userId);
         return Ok(recipes);
     }
 
@@ -57,7 +64,7 @@ public class RecipeController(IRecipeService recipeService, UserManager<User> us
 
 
         var recipe = await recipeService.CreateRecipeAsync(recipeDTO, user);
-        return CreatedAtRoute("", recipe.Id , null);
+        return Ok(recipe.ToDto());
     }
     [Authorize]
     [HttpPut("{id}")]
@@ -67,10 +74,50 @@ public class RecipeController(IRecipeService recipeService, UserManager<User> us
         {
             return BadRequest(ModelState);
         }
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        if (userId == null)
+        {
+            return Unauthorized();
+        }
+
+        if (!await recipeService.IsOwner(id,(await userManager.FindByIdAsync(userId))!))
+        {
+            return Forbid();
+        }
 
         await recipeService.UpdateRecipe(updateItemDto, id);
 
-        return Ok();
+        return NoContent();
     }
 
+    [Authorize]
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteItem(Guid id)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        if (userId == null)
+        {
+            return Unauthorized();
+        }
+
+        if (!await recipeService.IsOwner(id, (await userManager.FindByIdAsync(userId))!))
+        {
+            return Forbid();
+        }
+
+        var hasDeletedRecipe = await recipeService.DeleteRecipe(id);
+
+        if (!hasDeletedRecipe)
+        {
+            return BadRequest();
+        }
+
+        return NoContent();
+    }
 }

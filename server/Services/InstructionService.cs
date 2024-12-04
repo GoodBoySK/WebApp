@@ -2,20 +2,24 @@
 using server.Dtos;
 using server.Interfaces;
 using server.Models;
+using server.Utlis;
 
 namespace server.Services
 {
     public class InstructionService(AppDbContext dbContext,IImageStorageService imageStorageService) : IInstructionService
     {
-        public async Task<Instruction> Create(InstructionDto dto)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <param name="loggedUser"></param>
+        /// <returns></returns>
+        /// <exception cref="MediaFileNotFoundException"></exception>
+        public async Task<Instruction> Create(InstructionDto dto, User loggedUser)
         {
-            MediaFile? media = null;
-            if (dto.Media?.Image != null)
-            {
-                media = await imageStorageService.StoreImageAsync(dto.Media.Image);
-            }
+            var media = await dbContext.MediaFiles.FindAsync(dto.Media.Id) ?? throw new MediaFileNotFoundException();
 
-            Instruction instruction = new Instruction
+            var instruction = new Instruction
             {
                 Description = dto.Description,
                 Position = dto.Position,

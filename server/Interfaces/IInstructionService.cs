@@ -5,6 +5,6 @@ namespace server.Interfaces;
 
 public interface IInstructionService
 {
-    Task<Instruction> Create(InstructionDto dto);
+    Task<Instruction> Create(InstructionDto dto, User loggedUser);
     Instruction Delete(Instruction instruction);
 }

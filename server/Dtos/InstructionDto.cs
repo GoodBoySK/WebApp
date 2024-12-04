@@ -7,6 +7,6 @@ namespace server.Dtos
     {
         public int Position { get; set; } = 0;
         public string Description { get; set; } = string.Empty;
-        public MediaFileDto? Media { get; set; }
+        public MediaFileDto Media { get; set; } = new MediaFileDto();
     }
 }

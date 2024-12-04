@@ -105,7 +105,7 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
 
         if (result.Succeeded)
         {
-            return Ok();
+            return NoContent();
         }
 
         return BadRequest("Failed to delete user account");

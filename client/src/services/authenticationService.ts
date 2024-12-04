@@ -21,7 +21,7 @@ export function isLogged() : boolean {
 export async function getLoggedUserInfo() {
     try {
         let user = await apiService.get<UserData>("account/loggedUser")
-        return user;
+        return user.data;
     } catch (error) {
         console.error("User is not logged\n" + error);
         return {};
@@ -45,13 +45,15 @@ export async function register(email: string, name: string, password: string) {
 
 export async function logIn(email: string, password: string ){
     try {
-        let respones = await apiService.post<TokenAnswear>("account/login", {
+        let response = await apiService.post<TokenAnswear>("account/login", {
             email: email,
             password: password
-        })
+        });
 
-        if (respones && respones.logInToken)
-            sessionStorage.setItem('jwt', respones.logInToken);
+        let tokens = response.data;
+
+        if (tokens && tokens.logInToken)
+            sessionStorage.setItem('jwt', tokens.logInToken);
 
         return true;
     } catch (error) {

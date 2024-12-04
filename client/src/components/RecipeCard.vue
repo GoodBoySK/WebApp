@@ -1,12 +1,12 @@
 <template>
-	<div class="card text-start rounded-4 overflow-hidden">
+	<div class="card text-start rounded-4 overflow-hidden" @click="clicked">
 		<div class="h-auto overflow-hidden position-relative">
-			<img class="img-fluid" :src="recipe.thumbnailUrl" alt="Thumbnail" />
+			<img class="img-fluid" :src="urlSpotPicture" alt="Thumbnail" />
 			<div class="overlay"></div>
 		</div>
 		<div class="card-body roboto d-flex flex-column">
 			<h4 class="card-title">{{ recipe.name }}</h4>
-			<a class="card-subtitle flex-grow-1">{{ recipe.autor }}</a>
+			<a class="card-subtitle flex-grow-1">{{ recipe.author?.userName }}</a>
 			<div class="justify-content-evenly d-flex fs-6 text-center">
 				<div class="col">
 					<i class="bi bi-clock-history d-inline pe-1"></i>
@@ -18,12 +18,12 @@
 				</div>
 				<div class="col">
 					<i
-						v-for="n in recipe.dificulty"
+						v-for="n in recipe.difficulty"
 						:key="n"
 						class="fa-solid fa-lemon"
 					></i>
 					<i
-						v-for="n in 5 - recipe.dificulty"
+						v-for="n in 5 - recipe.difficulty"
 						:key="n"
 						class="fa-regular fa-lemon"
 					></i>
@@ -33,8 +33,19 @@
 	</div>
 </template>
 
-<script setup>
-let { recipe } = defineProps(["recipe"]);
+<script setup lang="ts">
+import getUrlOfImage from '@/services/mediaFileService';
+import type { Recipe } from '@/services/recipeService';
+import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const {recipe} = defineProps<{recipe: Recipe}>();
+let urlSpotPicture = ref(getUrlOfImage(recipe.spotPicture.id));
+let router = useRouter();
+
+function clicked() {
+	router.push("/recipe/" + recipe.id);
+}
 </script>
 
 <style lang="scss" scoped>

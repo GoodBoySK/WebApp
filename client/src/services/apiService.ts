@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios, { type AxiosRequestConfig } from "axios";
 import {IsTokenValid} from "@/services/authenticationService";
-import { useRouter } from "vue-router";
+import router from "@/router";
 
 export const apiUrl = "http://localhost:8080/api/";
 
@@ -36,29 +36,36 @@ client.interceptors.request.use(
 client.interceptors.response.use(
     (response) => response,
     (error) => {
-        if (error.respones && error.response.status === 401) {
-            useRouter().push("/login");
+        if (error.response && error.response.status === 401) {
+            router.push("/login");
+        }
+        console.log(error.response.status);
+        if (error.response && error.response.status === 404) {
+            router.push("/notFound");
         }
         return Promise.reject(error);
     }
 )
 
 export default {
-    async post<RecType>(url: string, data: any)
+    async post<RecType>(url: string, data: any, config: AxiosRequestConfig | undefined = undefined)
     {
-        return await client.post<RecType>(url, data).then((response) => response.data);
+        if (config)
+            return await client.post<RecType>(url, data, config);
+
+        return await client.post<RecType>(url, data);
     },
-    async get<RetType>(url: string)
+    async get<RetType>(url: string) 
     {
-        return await client.get<RetType>(url).then((response) => response.data);
+        return await client.get<RetType>(url);
     },
     async put(url: string, data: any)
     {
-        return await client.put(url, data).then((response) => response.data);
+        return await client.put(url, data);
     },
     async delete(url: string)
     {
-        return await client.delete(url).then((response) => response.data);
+        return await client.delete(url);
     }
 
 }

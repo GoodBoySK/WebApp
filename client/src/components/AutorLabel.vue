@@ -1,5 +1,5 @@
 <template>
-    <a href="#">{{ autor.name }}</a>
+    <a href="#">{{ autor?.name }}</a>
 </template>
 
 <script setup lang="ts">

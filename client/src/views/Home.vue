@@ -36,28 +36,28 @@ let topRecipes = [
 		name: "Špagety s mäsovými guličkami a paradajkovou omáčkou",
 		thumbnailUrl:
 			"https://gurman.zoznam.sk/wp-content/uploads/2024/02/gurman-spagety-s-masovymi-gulickami-spagety-735x600.jpg",
-		autor: "Michal Šovčík",
+		author: {userName:"Michal Šovčík"},
 		time: 45,
 		portions: 20,
-		dificulty: 3,
+		difficulty: 3,
 	},
 	{
 		name: "Bryndzové halušky s cibuľkou a slaninou",
 		thumbnailUrl:
 			"https://kuchynalidla.sk/storage/app/uploads/public/5fa/c0f/309/5fac0f309aa5a904284145.jpg",
-		autor: "Michal Šovčík",
+		author: {userName:"Michal Šovčík"},
 		time: 45,
 		portions: 20,
-		dificulty: 3,
+		difficulty: 3,
 	},
 	{
 		name: "Žemľovka z vianočky s tvarohom a jablkami",
 		thumbnailUrl:
 			"https://kuchynalidla.sk/storage/app/uploads/public/5fa/c0f/114/5fac0f114e070703027746.jpg",
-		autor: "Michal Šovčík",
+		author: {userName: "Michal Šovčík"},
 		time: 45,
 		portions: 20,
-		dificulty: 3,
+		difficulty: 3,
 	},
 ];
 
