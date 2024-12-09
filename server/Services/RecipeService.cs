@@ -79,6 +79,9 @@ namespace server.Services
             recipe.Description = recipeDto.Description;
             recipe.DishType = dishType;
 
+            recipe.Difficulty = recipeDto.Difficulty;
+            recipe.Time = recipeDto.Time;
+            recipe.Portions = recipeDto.Portions;
             //################## SPOT PICTURE ##################
             // If true than there is a new picture diffrent from old one
             if (
