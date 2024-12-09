@@ -40,7 +40,7 @@ import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const {recipe} = defineProps<{recipe: Recipe}>();
-let urlSpotPicture = ref(getUrlOfImage(recipe.spotPicture.id));
+let urlSpotPicture = ref(getUrlOfImage(recipe.spotPicture?.id));
 let router = useRouter();
 
 function clicked() {
