@@ -185,7 +185,7 @@ async function save() {
 		instructions: JSON.parse(JSON.stringify(instructions)),
 		tags: JSON.parse(JSON.stringify(tags)),
 	}  
-
+	console.log(updateObject);
 	saveRecipeById(recipe.id, updateObject);
 }
 
