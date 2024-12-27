@@ -13,5 +13,5 @@ export async function saveImg(data: FormData) {
         }
     });
 
-    return response.data;
+    return response[0];
 }

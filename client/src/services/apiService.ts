@@ -35,37 +35,115 @@ client.interceptors.request.use(
 
 client.interceptors.response.use(
     (response) => response,
-    (error) => {
-        if (error.response && error.response.status === 401) {
+    (error) : Promise<ApiError>=> {
+        if (!error.response)return Promise.reject<ApiError>({
+            type: 'network',
+            message: 'Network error. Please check your connection.',
+        });
+
+        if (error.response.status === 401) {
             router.push("/login");
+            return Promise.reject<ApiError>({
+                type: 'unautorized',
+                message: 'User is unautorized!!!',
+            });
         }
-        console.log(error.response.status);
-        if (error.response && error.response.status === 404) {
+        if (error.response.status === 403) {
+            return Promise.reject<ApiError>({
+                type: 'forbiden',
+                message: 'User is forbiden to do action!!!',
+            });
+        }
+        if (error.response.status === 404) {
             router.push("/notFound");
+            return Promise.reject<ApiError>({
+                type: 'notFound',
+                message: 'Content has not been found!!!',
+            })
         }
+        if (error.response.status === 400 && error.response.data) {
+            return Promise.reject<ApiError>({
+                type: 'validation',
+                message: error.response.data.message || 'Validation failed',
+                errors: error.response.data.errors.map((x: ValidationError) => {
+                    x.field = x.field.toLowerCase();
+                    return x
+                }) || [],
+            })
+        }
+
         return Promise.reject(error);
     }
 )
 
+export function isApiError(error: any): error is ApiError {
+    return (
+        error && 
+        typeof error === 'object' && 
+        'type' in error && 
+        'message' in error 
+    );
+}
+
+
+export interface ValidationError {
+    field: string;
+    message: string;
+}
+
+export interface ApiError {
+    type: 'validation' | 'server' | 'network' | 'unautorized' | 'notFound' | 'forbid';
+    message: string;
+    errors?: ValidationError[];
+    details?: string;
+}
+
 export default {
-    async post<RecType>(url: string, data: any, config: AxiosRequestConfig | undefined = undefined)
+    async post<RecType>(url: string, data: any, config: AxiosRequestConfig | undefined = undefined) : Promise<[data:RecType | undefined,error: any | ApiError]>
     {
         if (config)
-            return await client.post<RecType>(url, data, config);
+             return await client.post<RecType>(url, data, config).then(
+                data => {
+                    return [data.data, undefined];
+                },function (error) {
+                    return [undefined, error]
+                });
 
-        return await client.post<RecType>(url, data);
+        return await client.post<RecType>(url, data).then(
+            data => {
+                return [data.data, undefined];
+            },function (error) {
+                return [undefined, error]
+            });
     },
-    async get<RetType>(url: string) 
+    async get<RetType>(url: string) : Promise<[data:RetType | undefined,error: any | ApiError]>
     {
-        return await client.get<RetType>(url);
+        return await client.get<RetType>(url).then(
+            data => {
+                return [data.data, undefined];
+            },function (error) {
+                return [undefined, error]
+            });
     },
-    async put(url: string, data: any)
+    async put(url: string, data: any) : Promise<any | ApiError>
     {
-        return await client.put(url, data);
+        return await client.put(url, data).then(
+            () => {
+                return undefined;
+            },function (error) {
+                return error;
+            }
+        );
     },
-    async delete(url: string)
+    async delete(url: string) : Promise<any | ApiError>
     {
-        return await client.delete(url);
+        return await client.delete(url).then(
+            () => {
+                return undefined;
+            },function (error) {
+                return error;
+            }
+        );;
     }
 
 }

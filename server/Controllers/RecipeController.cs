@@ -59,7 +59,7 @@ public class RecipeController(IRecipeService recipeService, UserManager<User> us
 
         if (user == null)
         {
-            return BadRequest("Logged user not found in db.");
+            return BadRequest(new ErrorMesage{Message = "Logged user not found in db."});
         }
 
 
@@ -72,7 +72,7 @@ public class RecipeController(IRecipeService recipeService, UserManager<User> us
     {
         if (!ModelState.IsValid)
         {
-            return BadRequest(ModelState);
+            return BadRequest(Utils.ValidationError(ModelState));
         }
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
@@ -97,7 +97,7 @@ public class RecipeController(IRecipeService recipeService, UserManager<User> us
     {
         if (!ModelState.IsValid)
         {
-            return BadRequest(ModelState);
+            return BadRequest(Utils.ValidationError(ModelState));
         }
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
@@ -115,7 +115,7 @@ public class RecipeController(IRecipeService recipeService, UserManager<User> us
 
         if (!hasDeletedRecipe)
         {
-            return BadRequest();
+            return BadRequest(new ErrorMesage{Message = "Failed to delete recipe!!!"});
         }
 
         return NoContent();

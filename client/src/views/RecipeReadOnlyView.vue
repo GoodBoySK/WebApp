@@ -1,5 +1,7 @@
 <template>
-	<div class="container px-5 rubik main">
+	<div v-if="loadingState == LoadingTypes.Loading" class="display-1">Loading ...</div>
+	<div v-if="loadingState == LoadingTypes.Error" class="display-1">Error has occured during loading</div>
+	<div v-else class="container px-5 rubik main">
 		<!-- Menu -->
 		<div class="d-flex w-100 flex-row-reverse">
 			<button @click="edit" class="btn btn-primary mx-2">
@@ -150,6 +152,7 @@ import { onMounted, reactive } from "vue";
 import { ref } from "vue";
 import type {Instruction, Recipe, Review, Comment, Tag, Ingredient} from "@/services/recipeService"
 import { useRouter } from "vue-router";
+import { LoadingTypes } from "@/LoadingTypes";
 
 
 let { id } = defineProps(["id"]);
@@ -159,7 +162,7 @@ let instructions = reactive<Instruction[]>([]);
 let ingredients  = reactive<Ingredient[]>([]);
 let thumbnailPhotoUrl = ref("");
 let loggedUser = reactive({});
-let loading = ref(true);
+let loadingState = ref<LoadingTypes>(LoadingTypes.Loading);
 let tags = reactive<Tag[]>([]);
 
 let router = useRouter();
@@ -167,19 +170,25 @@ let router = useRouter();
 let recipeOriginal:Recipe;
 
 onMounted(async () => {
-    recipe = await getRecipeById(id);
-	recipeOriginal = JSON.parse(JSON.stringify(recipe));
-	
-	console.log(recipe);
-    Object.assign(instructions, recipe.instructions ?? []);
-	Object.assign(tags, recipe.tags ?? []);
-	Object.assign(ingredients, recipe.ingredients ?? []);
-	if (recipe.spotPicture) {
-    	thumbnailPhotoUrl.value = getUrlOfImage(recipe.spotPicture.id + "");
-	}
+	let response = await getRecipeById(id);
+	if (response[0]) {
+		recipe = response[0]; 
+		recipeOriginal = JSON.parse(JSON.stringify(recipe));
+		
+		console.log(recipe);
+		Object.assign(instructions, recipe.instructions ?? []);
+		Object.assign(tags, recipe.tags ?? []);
+		Object.assign(ingredients, recipe.ingredients ?? []);
+		if (recipe.spotPicture) {
+			thumbnailPhotoUrl.value = getUrlOfImage(recipe.spotPicture.id + "");
+		}
 
-	loggedUser = getLoggedUserInfo();
-    loading.value = false;
+		loggedUser = getLoggedUserInfo();
+		loadingState.value = LoadingTypes.Done;
+	} 
+	else {
+		loadingState.value = LoadingTypes.Error;
+	}
 });
 
 

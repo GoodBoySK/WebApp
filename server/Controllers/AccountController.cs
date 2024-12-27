@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using server.Dtos;
 using server.Interfaces;
 using server.Models;
+using server.Utlis;
 using System.Security.Claims;
 
 namespace server.Controllers;
@@ -27,12 +28,12 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
     {
         if (!ModelState.IsValid)
         {
-            return BadRequest(ModelState);
+            BadRequest(Utils.ValidationError(ModelState));
         }
 
         if (await userManager.FindByEmailAsync(bodyDto.Email) != null)
         {
-            return BadRequest("User already exist with this email!!!");
+            return BadRequest(new ErrorMesage{ Message="User already exist with this email!!!"});
         }
 
         var user = new User
@@ -49,7 +50,7 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
             if (true)
             {
                 await userManager.UpdateAsync(user);
-                return Ok("User Created Successfully");
+                return Ok();
             }
                 
         }
@@ -62,16 +63,22 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
     {
         if (!ModelState.IsValid)
         {
-            return BadRequest(ModelState);
+            return BadRequest(Utils.ValidationError(ModelState));
         }
         var user = await userManager.FindByEmailAsync(model.Email);
         if (user == null)
         {
-            return Unauthorized("Invalid Email");
+            return BadRequest(new ErrorMesage{
+                Message="Invalid Credentials",
+                Errors = [new ValidationMessage{Field=nameof(model.Email),Message="User with this email has not been found!!"}]                
+            });
         }
 
         var result = await signInManager.CheckPasswordSignInAsync(user, model.Password, false);
-        if (!result.Succeeded) return Unauthorized("Invalid Password");
+        if (!result.Succeeded) return BadRequest(new ErrorMesage{
+                Message="Invalid Credentials",
+                Errors = [new ValidationMessage{Field=nameof(model.Password),Message="Wrong password!!"}]                
+            });
 
         var (loginToken, refreshToken) = await tokenService.GenerateTokens(user);
 
@@ -98,7 +105,7 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
 
         if (user == null)
         {
-            return NotFound("User not found");
+            return NotFound();
         }
 
         var result = await userManager.DeleteAsync(user);
@@ -108,7 +115,7 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
             return NoContent();
         }
 
-        return BadRequest("Failed to delete user account");
+        return BadRequest(new ErrorMesage{ Message="Failed to delete to user!!!"});
     }
 
 }

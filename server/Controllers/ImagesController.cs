@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using server.Data;
 using server.Models;
 using server.Services;
+using server.Utlis;
 using System.Security.Claims;
 
 namespace server.Controllers;
@@ -22,7 +23,7 @@ public class ImagesController(IImageStorageService imageStorageService, UserMana
 
             if (mediaFile == null)
             {
-                return NotFound("MEDIANOTFOUND");
+                return NotFound();
             }
 
             return File(image, GetContentType(Path.GetExtension(mediaFile.Path)).TrimStart('.'));
@@ -54,7 +55,7 @@ public class ImagesController(IImageStorageService imageStorageService, UserMana
 
         if (user == null)
         {
-            return BadRequest("Logged user not found in db.");
+            return BadRequest(new ErrorMesage{Message = "Logged user not found in db."});
         }
 
         var mediaFile = await imageStorageService.StoreImageAsync(file, user);

@@ -1,5 +1,6 @@
 <template>
-    <div v-if="loading" class="display-1">Loading ...</div>
+    <div v-if="loadingState == LoadingTypes.Loading" class="display-1">Loading ...</div>
+    <div v-if="loadingState == LoadingTypes.Error" class="display-1">Error has occured during loading</div>
 	<div v-else class="container main">
 		<!-- Menu -->
 		<div class="d-flex w-100 flex-row-reverse">
@@ -118,8 +119,8 @@ import {saveImg} from "@/services/mediaFileService";
 import { onMounted, reactive } from "vue";
 import { ref } from "vue";
 import type {Instruction, Recipe, Review, Comment, Tag, Ingredient, UpdateRecipe} from "@/services/recipeService"
-import apiService from "@/services/apiService";
 import { useRouter } from "vue-router";
+import { LoadingTypes } from "@/LoadingTypes";
 
 
 let { id } = defineProps(["id"]);
@@ -129,27 +130,33 @@ let instructions = reactive<Instruction[]>([]);
 let ingredients  = reactive<Ingredient[]>([]);
 let thumbnailPhotoUrl = ref("");
 let loggedUser = reactive({});
-let loading = ref(true);
 let tags = reactive<Tag[]>([]);
 
+let loadingState = ref<LoadingTypes>(LoadingTypes.Loading);
 let router = useRouter();
 
 let recipeOriginal:Recipe;
 
 onMounted(async () => {
-    recipe = await getRecipeById(id);
-	recipeOriginal = JSON.parse(JSON.stringify(recipe));
-	
-	console.log(recipe);
-    Object.assign(instructions, recipe.instructions ?? []);
-	Object.assign(tags, recipe.tags ?? []);
-	Object.assign(ingredients, recipe.ingredients ?? []);
-	if (recipe.spotPicture) {
-    	thumbnailPhotoUrl.value = getUrlOfImage(recipe.spotPicture.id + "");
-	}
+	let response = await getRecipeById(id);
+	if (response[0]) {
+		recipe = response[0];
+		recipeOriginal = JSON.parse(JSON.stringify(recipe));
+		
+		console.log(recipe);
+		Object.assign(instructions, recipe.instructions ?? []);
+		Object.assign(tags, recipe.tags ?? []);
+		Object.assign(ingredients, recipe.ingredients ?? []);
+		if (recipe.spotPicture) {
+			thumbnailPhotoUrl.value = getUrlOfImage(recipe.spotPicture.id + "");
+		}
 
-	loggedUser = getLoggedUserInfo();
-    loading.value = false;
+		loggedUser = getLoggedUserInfo();
+		loadingState.value = LoadingTypes.Done;
+	}
+	else{
+		loadingState.value = LoadingTypes.Error;
+	}
 });
 
 function valid() {
@@ -161,16 +168,27 @@ async function save() {
 	if (!valid()) return;
 	
 	if (recipe.spotPicture.image) {
-		recipe.spotPicture.id = await saveImg(recipe.spotPicture.image);
+		let response = await saveImg(recipe.spotPicture.image);
+		if (response){
+			recipe.spotPicture.id = response;
+		}
+		else {
+			console.warn("Vyskytol sa error pri ukladani obrazku");
+		}
 	}
 
 	for(let i = 0;instructions && i < instructions?.length; i++) {
 		let x = instructions[i];
-		console.log(i)
 		if(x.media.image){
-			x.media.id = await saveImg(x.media.image);
+			let response = await saveImg(x.media.image);
+			if (response){
+				x.media.id = response;
+			}
+			else {
+				console.warn("Vyskytol sa error pri ukladani obrazku");
+			}
 		}
-	};
+	}
 
 	let updateObject:UpdateRecipe = {
 		name: recipe.name,

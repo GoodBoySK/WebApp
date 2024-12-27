@@ -1,15 +1,16 @@
 <template>
     <div class="bg d-block p-1">
         <div class="container my-4">
+            <error-banner :error="errors"></error-banner>
             <form @submit.prevent="login" class="bg-white p-5 mx-auto my-5 rounded-3 shadow-lg">
                 <h1 class="fw-semibold text-center my-4">Prihlás sa</h1>
                 <div class=" mb-3 m-2">
                     <label class="h6">Emailová adresa</label>
-                    <input type="email" class="form-control py-3" :class="{ 'is-valid': wrongCredentials.value, 'is-invalid': !wrongCredentials.value && form.email }" v-model="form.email" >
+                    <input type="email" class="form-control py-3" :class="{ 'is-valid': errors && !errors?.errors?.some(x => x.field == 'email'), 'is-invalid': errors && errors.errors && errors?.errors?.some(x => x.field == 'email') }" v-model="form.email" >
                 </div>
                 <div class="mb-3 m-2">
                     <label class="h6" >Heslo</label>
-                    <input type="password" class="form-control py-3" :class="{ 'is-valid': wrongCredentials.value, 'is-invalid': !wrongCredentials.value && form.password }" v-model="form.password">
+                    <input type="password" class="form-control py-3" :class="{ 'is-valid':errors && !errors?.errors?.some(x => x.field == 'password'), 'is-invalid': errors && errors.errors && errors?.errors?.some(x => x.field == 'password') }" v-model="form.password">
                 </div>
                 <router-link  class="d-block" to="/">Zabudol som heslo</router-link>
                 <router-link class="d-block" to="/register">Niesi regitrovaný? Zaregistruj sa tu</router-link>
@@ -19,10 +20,13 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { RouterLink, useRouter } from 'vue-router';
 import {logIn} from '@/services/authenticationService';
 import { ref } from 'vue';
+import { isApiError } from '@/services/apiService';
+import ErrorBanner from '@/components/ErrorBanner.vue';
+import type {ApiError} from '@/services/apiService';
 
 let form = {
     email:"",
@@ -30,28 +34,25 @@ let form = {
 }
 const routerMan = useRouter();
 
-let wrongCredentials = ref(false);
+let errors = ref<ApiError | null>(null)
 
 async function login(){
     console.log("Logging in....");
     if (validate()) {
-        let loginSuccesfully = await logIn(form.email, form.password);
+        let error = await logIn(form.email, form.password);
         
-        if (loginSuccesfully) {
-            routerMan.push("/");
-            wrongCredentials.value = false;
+        if (error && isApiError(error)) {
+            errors.value = error;
         }
         else {
-            wrongCredentials.value = true;
+            routerMan.push("/");
+            errors.value = null;
         }
-    }
-    else {
-        wrongCredentials.value = true;
     }
 }
 function validate() 
 {
-    form.email;
+    // set also errors
     return true;
 }
 </script>

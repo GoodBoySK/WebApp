@@ -1,5 +1,5 @@
 import CreateRecipe from "@/views/CreateRecipe.vue";
-import apiService from "./apiService";
+import apiService, { type ApiError } from "./apiService";
 import type { UserData } from "./authenticationService";
 
 
@@ -88,40 +88,41 @@ export interface CreateRecipe {
     name: string
 }
 
-export async function createRecipe(nazov:string) : Promise<Recipe>
+export async function createRecipe(nazov:string) : Promise<[recipe:Recipe | undefined,errors: any | ApiError]>
 {
 
     let data: CreateRecipe = {name: nazov};
     let response = await apiService.post<Recipe>(`recipe`, data);
 
-    return response.data;
+    return response;
 }
 
-export async function getMyRecipes() 
+export async function getMyRecipes() : Promise<[recipe:Recipe[] | undefined,errors: any | ApiError]>
 {
     let response = await apiService.post<Recipe[]>(`recipe/all`, {OnlyMy: true});
 
-    return response.data;
+    return response;
 }
 
 
-export async function getRecipeById(id : string) 
+export async function getRecipeById(id : string) : Promise<[recipe:Recipe | undefined,errors: any | ApiError]>
 {
     let response = await apiService.get<Recipe>(`recipe/${id}`);
 
-    return response.data;
+    return response;
 }
 
-export async function saveRecipeById(id : string, updateRecipe: UpdateRecipe )
+export async function saveRecipeById(id : string, updateRecipe: UpdateRecipe ) : Promise<any | ApiError>
 {
     let response = await apiService.put(`recipe/${id}`, updateRecipe);
 
-    return response.data;
+    return response;
 }
 
-export async function deleteRecipeById(id : string)
+//Return errors
+export async function deleteRecipeById(id : string) : Promise<any | ApiError>
 {
     let response = await apiService.delete(`recipe/${id}`);
 
-    return response.status == 204;
+    return response;
 }

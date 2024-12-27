@@ -1,4 +1,4 @@
-import apiService from "./apiService";
+import apiService, { type ApiError } from "./apiService";
 import { jwtDecode } from "jwt-decode";
 
 export interface UserData{
@@ -19,47 +19,46 @@ export function isLogged() : boolean {
 
 
 export async function getLoggedUserInfo() {
-    try {
-        let user = await apiService.get<UserData>("account/loggedUser")
-        return user.data;
-    } catch (error) {
-        console.error("User is not logged\n" + error);
+    let user = await apiService.get<UserData>("account/loggedUser")
+
+    if (user[1]) {
+        console.error("User is not logged\n" + user[1]);
         return {};
     }
+    return user[0];
 }
 
-export async function register(email: string, name: string, password: string) {
-     try {
-        await apiService.post("account/register", {
-            userName: name,
-            password: password,
-            email: email
-        })
-        return true;
-    } catch (error) {
-        console.error("User was not able to register");
-        return false;
-    }
-   
+// Return errors
+export async function register(email: string, name: string, password: string) : Promise<any | ApiError>{
+    var response = await apiService.post("account/register", {
+        userName: name,
+        password: password,
+        email: email
+    });
+
+    return response[1];   
 }
 
-export async function logIn(email: string, password: string ){
-    try {
+//return errors
+export async function logIn(email: string, password: string ) : Promise<any | ApiError> {
         let response = await apiService.post<TokenAnswear>("account/login", {
             email: email,
             password: password
         });
 
-        let tokens = response.data;
+        if (response[0]){
+            let tokens = response[0];
 
-        if (tokens && tokens.logInToken)
-            sessionStorage.setItem('jwt', tokens.logInToken);
+            if (tokens && tokens.logInToken)
+                sessionStorage.setItem('jwt', tokens.logInToken);
 
-        return true;
-    } catch (error) {
-        console.error("User was not logged in !!!\n" + error);
-        return false;
-    }
+            return undefined;
+        }
+        else {
+            console.error("User was not logged in !!!\n" + response[1]);
+            return response[1];
+        }
+
 }
 
 export function logOut() {
