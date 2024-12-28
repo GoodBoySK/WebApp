@@ -55,7 +55,7 @@ client.interceptors.response.use(
             });
         }
         if (error.response.status === 404) {
-            router.push("/notFound");
+            router.push("/notfound");
             return Promise.reject<ApiError>({
                 type: 'notFound',
                 message: 'Content has not been found!!!',

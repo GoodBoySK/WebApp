@@ -6,13 +6,19 @@ using server.Interfaces;
 using server.Models;
 using server.Utlis;
 using System.Security.Claims;
+using System.Web;
 
 namespace server.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class AccountController(UserManager<User> userManager, SignInManager<User> signInManager, ITokenService tokenService) : ControllerBase
+public class AccountController(UserManager<User> userManager, SignInManager<User> signInManager, ITokenService tokenService, IEmailService emailService, IConfiguration configuration) : ControllerBase
 {
+    private readonly UserManager<User> userManager = userManager;
+    private readonly SignInManager<User> signInManager = signInManager;
+    private readonly ITokenService tokenService = tokenService;
+    private readonly string frontEndResetPassword = configuration["RessetPassordUrl"]!;
+
     [Authorize]
     [HttpGet("loggedUser")]
     public async Task<IActionResult> GetLoggedUser()
@@ -118,4 +124,47 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
         return BadRequest(new ErrorMesage{ Message="Failed to delete to user!!!"});
     }
 
+    [HttpPost("requestResetPassword")]
+    public async Task<IActionResult> ResetPasswordRequest([FromBody]string email)
+    {
+        var user = await userManager.FindByEmailAsync(email);
+
+        if (user == null) {
+            return BadRequest(new ErrorMesage{Message="There is no user with this email registered!!!"});
+        }
+
+        string token = await userManager.GeneratePasswordResetTokenAsync(user);
+
+        token = HttpUtility.UrlEncode(token);
+
+        string resetLink = $"{frontEndResetPassword}/{token}/{email}";
+
+        await emailService.SendEmailAsync(email, "Password Reset Request", $"<h3>ChefBook</h3><p>Reset password for user <b>{user.UserName}</b>\n\nClick the following link to reset your password: <a href='{resetLink}'>Reset Password</a></p>");
+        
+        return Ok();
+    }
+
+    [HttpPost("resetPassword")]
+    public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto dto)
+    {
+        var user = await userManager.FindByEmailAsync(dto.Email);
+
+        if (user == null) {
+            return NotFound();
+        }
+
+        bool rightOldPassword = await userManager.CheckPasswordAsync(user, dto.OldPassword);
+
+        if (!rightOldPassword) {
+            return BadRequest(new ErrorMesage{Message = "ValidationError", Errors = [new ValidationMessage{Field=nameof(dto.OldPassword), Message="Old password is incorect"}] });
+        }
+
+        var result = await userManager.ResetPasswordAsync(user, dto.Token, dto.NewPassword);
+
+        if (!result.Succeeded) {
+            return BadRequest(new ErrorMesage{ Message="Password reset was not succesfull", Details=string.Join("\n", result.Errors)});
+        }
+
+        return Ok();
+    }
 }

@@ -8,7 +8,7 @@
             <p class="d-inline m-1">{{ user.userName }}</p>            
         </button>
         <ul v-if="isLoggedLocal" class="dropdown-menu dropdown-menu-end">
-            <li><router-link class="dropdown-item" to="/myRecipes">Moje recepty</router-link></li>
+            <li><router-link class="dropdown-item" to="/myrecipes">Moje recepty</router-link></li>
             <li><a class="dropdown-item" href="#">Nastavenia</a></li>
             <li><a class="dropdown-item" href="#">Odhlásiť sa</a></li>
         </ul>

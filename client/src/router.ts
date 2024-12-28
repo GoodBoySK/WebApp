@@ -11,6 +11,9 @@ import RecipeEdit from './views/RecipeEdit.vue';
 import NotFoundPage from './views/NotFoundPage.vue';
 import MyRecipes from './views/MyRecipes.vue';
 import CreateRecipe from './views/CreateRecipe.vue';
+import ResetPassword from './views/ResetPassword.vue';
+import ResetPasswordRequest from './views/ResetPasswordRequest.vue';
+import ResetPasswordSucesfull from './views/ResetPasswordSucesfull.vue';
 
 let router = createRouter({ 
     history: createWebHashHistory(),
@@ -24,11 +27,12 @@ let router = createRouter({
         {path: '/recipe/:id', component: RecipeReadOnlyView, props: true},
         {path: '/recipe/:id/edit', component: RecipeEdit, props: true},
         {path: '/blog/:id', component: BlogReadOnlyView, props: true},
-        {path: '/notFound', component: NotFoundPage,  meta: {hideNavbar: true} },
-        {path: '/myRecipes', component: MyRecipes, },
-        {path: '/createRecipe', component: CreateRecipe, },
-
-
+        {path: '/notfound', component: NotFoundPage,  meta: {hideNavbar: true} },
+        {path: '/myrecipes', component: MyRecipes, },
+        {path: '/createrecipe', component: CreateRecipe, },
+        {path: '/resetpassword/:token/:email', component: ResetPassword, props: true},
+        {path: '/resetpasswordrequest', component: ResetPasswordRequest},
+        {path: '/resetpasswordsuccesfull', component: ResetPasswordSucesfull},
     ]
 
 });

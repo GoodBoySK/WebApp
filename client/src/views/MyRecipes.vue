@@ -34,7 +34,7 @@ onMounted(async ()=> {
 });
 
 function create() {
-    router.push("/createRecipe");
+    router.push("/createrecipe");
 }
 
 </script>

@@ -13,10 +13,36 @@ interface TokenAnswear
     refreshToken: string;
 } 
 
+interface ResetToken
+{
+    oldPassword: string;
+    newPassword: string;
+    token: string;
+    email: string;
+}
+
 export function isLogged() : boolean {
     return sessionStorage.getItem('jwt') != null;
 }
 
+export async function resetPassword(oldPassword:string, newPassword:string, token:string, email:string) {
+    let param: ResetToken = {
+        newPassword: newPassword,
+        oldPassword: oldPassword,
+        token: token,
+        email: email
+    };
+
+    let answear = await apiService.post("account/resetPassword", param);
+
+    return answear[1];
+}
+
+export async function ResetPasswordRequest(email:string) {
+    let answear = await apiService.post("account/requestResetPassword", email);
+
+    return answear[1];
+}
 
 export async function getLoggedUserInfo() {
     let user = await apiService.get<UserData>("account/loggedUser")
