@@ -14,6 +14,7 @@ import CreateRecipe from './views/CreateRecipe.vue';
 import ResetPassword from './views/ResetPassword.vue';
 import ResetPasswordRequest from './views/ResetPasswordRequest.vue';
 import ResetPasswordSucesfull from './views/ResetPasswordSucesfull.vue';
+import UserSettings from './views/UserSettings.vue';
 
 let router = createRouter({ 
     history: createWebHashHistory(),
@@ -33,6 +34,7 @@ let router = createRouter({
         {path: '/resetpassword/:token/:email', component: ResetPassword, props: true},
         {path: '/resetpasswordrequest', component: ResetPasswordRequest},
         {path: '/resetpasswordsuccesfull', component: ResetPasswordSucesfull},
+        {path: '/usersettings', component: UserSettings},
     ]
 
 });

@@ -9,15 +9,16 @@
         </button>
         <ul v-if="isLoggedLocal" class="dropdown-menu dropdown-menu-end">
             <li><router-link class="dropdown-item" to="/myrecipes">Moje recepty</router-link></li>
-            <li><a class="dropdown-item" href="#">Nastavenia</a></li>
-            <li><a class="dropdown-item" href="#">Odhlásiť sa</a></li>
+            <li><router-link class="dropdown-item" to="/usersettings">Nastavenia</router-link></li>
+            <li><a class="dropdown-item" @click.prevent="logout" href="#">Odhlásiť sa</a></li>
         </ul>
 
     </div>
 </template>
 
 <script setup>
-import { getLoggedUserInfo, isLogged } from "@/services/authenticationService";
+import { isApiError } from "@/services/apiService";
+import { MountOnLogOut, getLoggedUserInfo, isLogged, logOut } from "@/services/authenticationService";
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { RouterLink } from "vue-router";
@@ -30,6 +31,18 @@ const isLoggedLocal = ref(true);
 function login(){
 	router.push('/login')
 }
+
+async function logout() {
+    var errors = await logOut();
+    if (errors && isApiError(errors)) {
+        console.error(errors.message);
+    }
+}
+
+MountOnLogOut(() => {
+    router.replace("/");
+    isLoggedLocal.value = false;
+})
 
 onMounted(async () => {
 

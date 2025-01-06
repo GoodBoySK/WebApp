@@ -1,6 +1,7 @@
 import CreateRecipe from "@/views/CreateRecipe.vue";
 import apiService, { type ApiError } from "./apiService";
 import type { UserData } from "./authenticationService";
+import { effectScope } from "vue";
 
 
 export interface DishType{
@@ -12,6 +13,7 @@ export interface DishType{
 export interface MediaFile {
     id: string;
     image?: FormData | null;
+    isPresent?: boolean;
 }
 
 export interface Ingredient{
@@ -88,6 +90,20 @@ export interface CreateRecipe {
     name: string
 }
 
+export interface RecipedFilter {
+    nameFilter?: string;
+    onlyMy?: boolean;
+    pageSize?: number;
+    page?: number;
+    order?: "name" | "created_at";
+    ascending?: boolean;
+}
+
+export interface RecipeFilterResponse {
+    recipes: Recipe[];
+    allCount: number;
+}
+
 export async function createRecipe(nazov:string) : Promise<[recipe:Recipe | undefined,errors: any | ApiError]>
 {
 
@@ -97,9 +113,9 @@ export async function createRecipe(nazov:string) : Promise<[recipe:Recipe | unde
     return response;
 }
 
-export async function getMyRecipes() : Promise<[recipe:Recipe[] | undefined,errors: any | ApiError]>
+export async function getMyRecipes(page:number, pageSize:number) : Promise<[recipe:RecipeFilterResponse | undefined,errors: any | ApiError]>
 {
-    let response = await apiService.post<Recipe[]>(`recipe/all`, {OnlyMy: true});
+    let response = await apiService.post<RecipeFilterResponse>(`recipe/all`, {OnlyMy: true, page: page, pageSize: pageSize});
 
     return response;
 }
@@ -124,5 +140,11 @@ export async function deleteRecipeById(id : string) : Promise<any | ApiError>
 {
     let response = await apiService.delete(`recipe/${id}`);
 
+    return response;
+}
+
+export async function getRecipesByFilter(filter?: RecipedFilter) : Promise<[RecipeFilterResponse | undefined, any | ApiError]>{
+    let response = await apiService.post<RecipeFilterResponse>('recipe/all', filter);
+    
     return response;
 }

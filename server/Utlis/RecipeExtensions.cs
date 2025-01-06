@@ -41,6 +41,7 @@ namespace server.Utlis
         new() 
         {
             Id = mediaFile.Id,
+            IsPresent = mediaFile.Size != 0,
         };    
 
         public static InstructionDto ToDto(this Instruction instruction) =>

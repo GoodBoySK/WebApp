@@ -1,7 +1,7 @@
 <template>
     <div v-if="!editable" class="d-flex align-top main-container py-4">
         <p class="border px-3 me-3 py-2 my-auto rounded-3 align-self-center order text-center">{{ instruction?.position }}</p>
-        <img class="border" v-if="instruction?.media" :src="photoUrl" />
+        <img class="border" v-if="instruction?.media && instruction.media.isPresent" :src="photoUrl" />
         <p class="mb-0 w-auto p-4 border ">{{ instruction?.description }}</p>
     </div>
     <div v-else class="d-flex align-top main-container py-4">

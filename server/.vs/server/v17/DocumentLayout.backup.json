@@ -1,0 +1,922 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\utlis\\recipeextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:utlis\\recipeextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\models\\mediafile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:models\\mediafile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\services\\imagestorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:services\\imagestorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\services\\instructionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:services\\instructionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20250105172914_MediaFileChanged.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20250105172914_MediaFileChanged.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\services\\recipeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:services\\recipeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\models\\filter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:models\\filter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\controllers\\recipecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:controllers\\recipecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\models\\recipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:models\\recipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\interfaces\\irecipeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:interfaces\\irecipeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\utlis\\utils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:utlis\\utils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\dtos\\recipe\\updaterecipedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:dtos\\recipe\\updaterecipedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\dtos\\recipe\\recipedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:dtos\\recipe\\recipedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\dtos\\recipe\\createrecipedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:dtos\\recipe\\createrecipedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\controllers\\imagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:controllers\\imagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\interfaces\\iinstructionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:interfaces\\iinstructionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\utlis\\mediafilenotfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:utlis\\mediafilenotfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\dtos\\mediafiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:dtos\\mediafiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\dtos\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:dtos\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\models\\dishtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:models\\dishtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\server.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:server.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\migrations\\20241104175815_recipechangeagain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:migrations\\20241104175815_recipechangeagain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\models\\instruction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:models\\instruction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\dtos\\ingredientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:dtos\\ingredientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\models\\ingredient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:models\\ingredient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\models\\comment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:models\\comment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\dtos\\instructiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:dtos\\instructiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\interfaces\\itokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:interfaces\\itokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\dtos\\loggeduserdatadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:dtos\\loggeduserdatadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\migrations\\20241015152422_usersupdate.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:migrations\\20241015152422_usersupdate.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20241102183529_MediaUpdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20241102183529_MediaUpdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20241102183123_MediaUpdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20241102183123_MediaUpdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\dtos\\tagdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:dtos\\tagdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\models\\tag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:models\\tag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\migrations\\20241015152422_usersupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:migrations\\20241015152422_usersupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\migrations\\20241102180621_ingredientupd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:migrations\\20241102180621_ingredientupd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\migrations\\appdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:migrations\\appdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\server.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:server.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\dtos\\commentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:dtos\\commentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\models\\reviews.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:models\\reviews.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\dtos\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:dtos\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\migrations\\20241004131005_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:migrations\\20241004131005_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\migrations\\20241104174959_recipechange.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:migrations\\20241104174959_recipechange.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\migrations\\20250102143142_recipechangecreatedadded.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:migrations\\20250102143142_recipechangecreatedadded.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|c:\\users\\misos\\source\\repos\\webapp\\server\\migrations\\20250102105056_userchanges.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B83CAC72-638B-4013-A8C4-DDEDD5EBFD94}|server.csproj|solutionrelative:migrations\\20250102105056_userchanges.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\misos\\source\\repos\\WebApp\\server\\Services\\UserService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Services\\UserService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:4:0:{b9f91511-5ca5-40ec-9726-f3e3a7e534e2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "20250105172914_MediaFileChanged.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20250105172914_MediaFileChanged.cs",
+              "RelativeDocumentMoniker": "Migrations\\20250105172914_MediaFileChanged.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20250105172914_MediaFileChanged.cs",
+              "RelativeToolTip": "Migrations\\20250105172914_MediaFileChanged.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-05T17:29:15.001Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "RecipeService.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Services\\RecipeService.cs",
+              "RelativeDocumentMoniker": "Services\\RecipeService.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Services\\RecipeService.cs",
+              "RelativeToolTip": "Services\\RecipeService.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAADMAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T21:35:03.799Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Filter.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Models\\Filter.cs",
+              "RelativeDocumentMoniker": "Models\\Filter.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Models\\Filter.cs",
+              "RelativeToolTip": "Models\\Filter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-20T08:37:54.649Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ImageStorageService.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Services\\ImageStorageService.cs",
+              "RelativeDocumentMoniker": "Services\\ImageStorageService.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Services\\ImageStorageService.cs",
+              "RelativeToolTip": "Services\\ImageStorageService.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAqwCQAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T13:00:19.982Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MediaFile.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Models\\MediaFile.cs",
+              "RelativeDocumentMoniker": "Models\\MediaFile.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Models\\MediaFile.cs",
+              "RelativeToolTip": "Models\\MediaFile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T20:05:12.522Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "InstructionService.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Services\\InstructionService.cs",
+              "RelativeDocumentMoniker": "Services\\InstructionService.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Services\\InstructionService.cs",
+              "RelativeToolTip": "Services\\InstructionService.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAhwBQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-19T19:57:23.668Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RecipeExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Utlis\\RecipeExtensions.cs",
+              "RelativeDocumentMoniker": "Utlis\\RecipeExtensions.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Utlis\\RecipeExtensions.cs",
+              "RelativeToolTip": "Utlis\\RecipeExtensions.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAAACsAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T17:38:17.444Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RecipeController.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Controllers\\RecipeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\RecipeController.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Controllers\\RecipeController.cs",
+              "RelativeToolTip": "Controllers\\RecipeController.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAACEAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T13:32:51.735Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IRecipeService.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Interfaces\\IRecipeService.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IRecipeService.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Interfaces\\IRecipeService.cs",
+              "RelativeToolTip": "Interfaces\\IRecipeService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T21:33:53.17Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABoAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T11:07:10.898Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "20250102143142_RecipeChangeCreatedAdded.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20250102143142_RecipeChangeCreatedAdded.cs",
+              "RelativeDocumentMoniker": "Migrations\\20250102143142_RecipeChangeCreatedAdded.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20250102143142_RecipeChangeCreatedAdded.cs",
+              "RelativeToolTip": "Migrations\\20250102143142_RecipeChangeCreatedAdded.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-02T14:31:42.426Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-03T12:07:57.852Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Controllers\\AccountController.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAAACgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T12:30:58.73Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Utils.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Utlis\\Utils.cs",
+              "RelativeDocumentMoniker": "Utlis\\Utils.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Utlis\\Utils.cs",
+              "RelativeToolTip": "Utlis\\Utils.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-02T12:57:28.22Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Recipe.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Models\\Recipe.cs",
+              "RelativeDocumentMoniker": "Models\\Recipe.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Models\\Recipe.cs",
+              "RelativeToolTip": "Models\\Recipe.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAhwAsAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T19:58:05.758Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "20250102105056_USerChanges.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20250102105056_USerChanges.cs",
+              "RelativeDocumentMoniker": "Migrations\\20250102105056_USerChanges.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20250102105056_USerChanges.cs",
+              "RelativeToolTip": "Migrations\\20250102105056_USerChanges.cs",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-02T10:50:56.345Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Models\\User.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Models\\User.cs",
+              "RelativeToolTip": "Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T10:45:09.459Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "RecipeDto.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dtos\\Recipe\\RecipeDto.cs",
+              "RelativeDocumentMoniker": "Dtos\\Recipe\\RecipeDto.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dtos\\Recipe\\RecipeDto.cs",
+              "RelativeToolTip": "Dtos\\Recipe\\RecipeDto.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAAkAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T17:55:21.033Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "CreateRecipeDTO.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dtos\\Recipe\\CreateRecipeDTO.cs",
+              "RelativeDocumentMoniker": "Dtos\\Recipe\\CreateRecipeDTO.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dtos\\Recipe\\CreateRecipeDTO.cs",
+              "RelativeToolTip": "Dtos\\Recipe\\CreateRecipeDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T13:11:26.827Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "UpdateRecipeDto.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dtos\\Recipe\\UpdateRecipeDto.cs",
+              "RelativeDocumentMoniker": "Dtos\\Recipe\\UpdateRecipeDto.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dtos\\Recipe\\UpdateRecipeDto.cs",
+              "RelativeToolTip": "Dtos\\Recipe\\UpdateRecipeDto.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABAAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T16:43:16.37Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "Services\\UserService.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Services\\UserService.cs",
+              "RelativeToolTip": "Services\\UserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-30T21:15:55.417Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dockerfile",
+              "RelativeDocumentMoniker": "Dockerfile",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dockerfile",
+              "RelativeToolTip": "Dockerfile",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAMAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-10-02T12:31:18.538Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ImagesController.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Controllers\\ImagesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ImagesController.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Controllers\\ImagesController.cs",
+              "RelativeToolTip": "Controllers\\ImagesController.cs",
+              "ViewState": "AQIAACgAAAAAAAAAAAAAADsAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T13:22:05.687Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "IInstructionService.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Interfaces\\IInstructionService.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IInstructionService.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Interfaces\\IInstructionService.cs",
+              "RelativeToolTip": "Interfaces\\IInstructionService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-19T19:57:46.814Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "MediaFileNotFoundException.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Utlis\\MediaFileNotFoundException.cs",
+              "RelativeDocumentMoniker": "Utlis\\MediaFileNotFoundException.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Utlis\\MediaFileNotFoundException.cs",
+              "RelativeToolTip": "Utlis\\MediaFileNotFoundException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAABcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T20:23:41.165Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "MediaFileDto.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dtos\\MediaFileDto.cs",
+              "RelativeDocumentMoniker": "Dtos\\MediaFileDto.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dtos\\MediaFileDto.cs",
+              "RelativeToolTip": "Dtos\\MediaFileDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T22:07:06.293Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "RegisterDto.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dtos\\RegisterDto.cs",
+              "RelativeDocumentMoniker": "Dtos\\RegisterDto.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dtos\\RegisterDto.cs",
+              "RelativeToolTip": "Dtos\\RegisterDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T12:32:25.753Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAADsAAAAAAAAAAAAAAEQAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T12:05:11.816Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "DishType.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Models\\DishType.cs",
+              "RelativeDocumentMoniker": "Models\\DishType.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Models\\DishType.cs",
+              "RelativeToolTip": "Models\\DishType.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAwwA8AAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T11:31:48.373Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "server.csproj",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\server.csproj",
+              "RelativeDocumentMoniker": "server.csproj",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\server.csproj",
+              "RelativeToolTip": "server.csproj",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAAABoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-10-02T19:49:57.979Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "20241104175815_RecipeChangeAgain.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20241104175815_RecipeChangeAgain.cs",
+              "RelativeDocumentMoniker": "Migrations\\20241104175815_RecipeChangeAgain.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20241104175815_RecipeChangeAgain.cs",
+              "RelativeToolTip": "Migrations\\20241104175815_RecipeChangeAgain.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABUAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T17:58:16.024Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Instruction.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Models\\Instruction.cs",
+              "RelativeDocumentMoniker": "Models\\Instruction.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Models\\Instruction.cs",
+              "RelativeToolTip": "Models\\Instruction.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T20:10:11.786Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "IngredientDto.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dtos\\IngredientDto.cs",
+              "RelativeDocumentMoniker": "Dtos\\IngredientDto.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dtos\\IngredientDto.cs",
+              "RelativeToolTip": "Dtos\\IngredientDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-19T20:31:55.766Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Ingredient.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Models\\Ingredient.cs",
+              "RelativeDocumentMoniker": "Models\\Ingredient.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Models\\Ingredient.cs",
+              "RelativeToolTip": "Models\\Ingredient.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T20:09:01.222Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "Comment.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Models\\Comment.cs",
+              "RelativeDocumentMoniker": "Models\\Comment.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Models\\Comment.cs",
+              "RelativeToolTip": "Models\\Comment.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T10:36:17.285Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "InstructionDto.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dtos\\InstructionDto.cs",
+              "RelativeDocumentMoniker": "Dtos\\InstructionDto.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dtos\\InstructionDto.cs",
+              "RelativeToolTip": "Dtos\\InstructionDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-19T19:59:57.125Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "TokenService.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Services\\TokenService.cs",
+              "RelativeDocumentMoniker": "Services\\TokenService.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Services\\TokenService.cs",
+              "RelativeToolTip": "Services\\TokenService.cs",
+              "ViewState": "AQIAAD8AAAAAAAAAAAAWwFYAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T12:59:55.88Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "ITokenService.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Interfaces\\ITokenService.cs",
+              "RelativeDocumentMoniker": "Interfaces\\ITokenService.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Interfaces\\ITokenService.cs",
+              "RelativeToolTip": "Interfaces\\ITokenService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T13:10:26.213Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "LoggedUserDataDto.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dtos\\LoggedUserDataDto.cs",
+              "RelativeDocumentMoniker": "Dtos\\LoggedUserDataDto.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dtos\\LoggedUserDataDto.cs",
+              "RelativeToolTip": "Dtos\\LoggedUserDataDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T12:57:32.642Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "Review.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Models\\Review.cs",
+              "RelativeDocumentMoniker": "Models\\Review.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Models\\Review.cs",
+              "RelativeToolTip": "Models\\Review.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T20:13:47.507Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "20241104174959_RecipeChange.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20241104174959_RecipeChange.cs",
+              "RelativeDocumentMoniker": "Migrations\\20241104174959_RecipeChange.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20241104174959_RecipeChange.cs",
+              "RelativeToolTip": "Migrations\\20241104174959_RecipeChange.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T17:49:59.803Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "TagDto.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dtos\\TagDto.cs",
+              "RelativeDocumentMoniker": "Dtos\\TagDto.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dtos\\TagDto.cs",
+              "RelativeToolTip": "Dtos\\TagDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-19T20:39:29.531Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "Tag.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Models\\Tag.cs",
+              "RelativeDocumentMoniker": "Models\\Tag.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Models\\Tag.cs",
+              "RelativeToolTip": "Models\\Tag.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T11:14:13.931Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "20241102183123_MediaUpdate.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20241102183123_MediaUpdate.cs",
+              "RelativeDocumentMoniker": "Migrations\\20241102183123_MediaUpdate.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20241102183123_MediaUpdate.cs",
+              "RelativeToolTip": "Migrations\\20241102183123_MediaUpdate.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAABUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-02T18:31:23.228Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "20241102183529_MediaUpdate.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20241102183529_MediaUpdate.cs",
+              "RelativeDocumentMoniker": "Migrations\\20241102183529_MediaUpdate.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20241102183529_MediaUpdate.cs",
+              "RelativeToolTip": "Migrations\\20241102183529_MediaUpdate.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-02T18:35:30.01Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "20241015152422_usersupdate.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20241015152422_usersupdate.Designer.cs",
+              "RelativeDocumentMoniker": "Migrations\\20241015152422_usersupdate.Designer.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20241015152422_usersupdate.Designer.cs",
+              "RelativeToolTip": "Migrations\\20241015152422_usersupdate.Designer.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAAA8AAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-02T18:28:59.469Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "20241015152422_usersupdate.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20241015152422_usersupdate.cs",
+              "RelativeDocumentMoniker": "Migrations\\20241015152422_usersupdate.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20241015152422_usersupdate.cs",
+              "RelativeToolTip": "Migrations\\20241015152422_usersupdate.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-02T18:27:54.814Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "20241102180621_IngredientUpd.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20241102180621_IngredientUpd.cs",
+              "RelativeDocumentMoniker": "Migrations\\20241102180621_IngredientUpd.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20241102180621_IngredientUpd.cs",
+              "RelativeToolTip": "Migrations\\20241102180621_IngredientUpd.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-02T18:06:22.183Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "AppDbContextModelSnapshot.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\AppDbContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "Migrations\\AppDbContextModelSnapshot.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\AppDbContextModelSnapshot.cs",
+              "RelativeToolTip": "Migrations\\AppDbContextModelSnapshot.cs",
+              "ViewState": "AQIAALQAAAAAAAAAAAAAABQAAABGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-02T15:19:24.723Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "server.http",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\server.http",
+              "RelativeDocumentMoniker": "server.http",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\server.http",
+              "RelativeToolTip": "server.http",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2024-10-15T21:20:42.889Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Properties\\launchSettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-04T11:20:28.19Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "CommentDto.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dtos\\CommentDto.cs",
+              "RelativeDocumentMoniker": "Dtos\\CommentDto.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dtos\\CommentDto.cs",
+              "RelativeToolTip": "Dtos\\CommentDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-19T20:37:20.04Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "Reviews.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Models\\Reviews.cs",
+              "RelativeDocumentMoniker": "Models\\Reviews.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Models\\Reviews.cs",
+              "RelativeToolTip": "Models\\Reviews.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T20:16:33.971Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "LoginDto.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dtos\\LoginDto.cs",
+              "RelativeDocumentMoniker": "Dtos\\LoginDto.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Dtos\\LoginDto.cs",
+              "RelativeToolTip": "Dtos\\LoginDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T12:48:54.592Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "20241004131005_Init.cs",
+              "DocumentMoniker": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20241004131005_Init.cs",
+              "RelativeDocumentMoniker": "Migrations\\20241004131005_Init.cs",
+              "ToolTip": "C:\\Users\\misos\\source\\repos\\WebApp\\server\\Migrations\\20241004131005_Init.cs",
+              "RelativeToolTip": "Migrations\\20241004131005_Init.cs",
+              "ViewState": "AQIAAKoBAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:10:06.125Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

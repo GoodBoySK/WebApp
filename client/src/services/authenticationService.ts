@@ -4,6 +4,7 @@ import { jwtDecode } from "jwt-decode";
 export interface UserData{
     id: string,
     userName: string
+    email: string
 }
 
 interface TokenAnswear
@@ -19,6 +20,10 @@ interface ResetToken
     newPassword: string;
     token: string;
     email: string;
+}
+
+export interface UpdateUserInfo {
+    newName: string;
 }
 
 export function isLogged() : boolean {
@@ -44,12 +49,18 @@ export async function ResetPasswordRequest(email:string) {
     return answear[1];
 }
 
-export async function getLoggedUserInfo() {
+export async function updateUserInfo(newUserInfo: UpdateUserInfo) {
+    let answear = await apiService.put("account", newUserInfo);
+
+    return answear;
+}
+
+export async function getLoggedUserInfo() : Promise<UserData | undefined> {
     let user = await apiService.get<UserData>("account/loggedUser")
 
     if (user[1]) {
         console.error("User is not logged\n" + user[1]);
-        return {};
+        return undefined;
     }
     return user[0];
 }
@@ -63,6 +74,12 @@ export async function register(email: string, name: string, password: string) : 
     });
 
     return response[1];   
+}
+
+export async function unregister() {
+    var error = await apiService.delete("account");
+
+    return error;
 }
 
 //return errors
@@ -87,9 +104,17 @@ export async function logIn(email: string, password: string ) : Promise<any | Ap
 
 }
 
-export function logOut() {
+export async function logOut() {
     sessionStorage.removeItem('jwt');
+    let response = await apiService.post("account/logout", {});
 
+    if (!response[1]) {
+        logoutCallback.forEach(x => {
+            x();
+        });
+    }
+
+    return response[1];
 }
 
  async function refreshAccessToken() {
@@ -105,4 +130,10 @@ export function IsTokenValid(jwtToken: string) : boolean {
     if (!data.exp) return true;
 
     return data.exp > currentTime;
+}
+
+
+let logoutCallback: (() => void)[] = [];
+export function MountOnLogOut(func: () => void) {
+    logoutCallback.push(func);
 }

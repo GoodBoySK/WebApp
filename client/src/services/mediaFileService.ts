@@ -2,6 +2,7 @@ import { apiUrl  } from "./apiService";
 import apiService from "./apiService";
 
 export default  function getUrlOfImage(id: string){
+    console.log(apiUrl + "images/" + id);
     return apiUrl + "images/" + id;
 }
 

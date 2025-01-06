@@ -69,6 +69,7 @@ client.interceptors.response.use(
                     x.field = x.field.toLowerCase();
                     return x
                 }) || [],
+                details: error.response.data.details
             })
         }
 

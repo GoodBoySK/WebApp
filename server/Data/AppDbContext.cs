@@ -15,4 +15,17 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
     public DbSet<Tag> Tags { get; set; }
     public DbSet<DishType> DishTypes { get; set; }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        base.OnConfiguring(optionsBuilder);
+    }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        builder.Entity<User>().HasQueryFilter(u => !u.Deleted);
+
+        builder.Entity<Comment>().HasQueryFilter(u => true);
+
+        base.OnModelCreating(builder);
+    }
 }

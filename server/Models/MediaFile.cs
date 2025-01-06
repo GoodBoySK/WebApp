@@ -7,6 +7,7 @@ public class MediaFile(string path)
     public int Id { get; set; }
     [StringLength(100)]
     public string Path { get; set; } = path;
+    public long Size { get; set; }
     public User? CreatedBy { get; set; }
     public DateTime CreatedDate { get; set; }
 

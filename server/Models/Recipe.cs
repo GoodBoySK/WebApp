@@ -9,6 +9,7 @@ public class Recipe
     public string Name { get; set; } = "Recipe";
     [StringLength(500)]
     public string Description { get; set; } = string.Empty;
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
     public int Time { get; set; }// In minutes
     public int Portions { get; set; }
     public int Difficulty { get; set; }

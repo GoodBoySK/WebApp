@@ -37,8 +37,9 @@
                     type="search"
                     placeholder="Search"
                     aria-label="Search"
+					disabled
                 />
-                <button class="btn btn-primary px-4" type="submit">
+                <button class="btn btn-primary px-4 disabled" type="submit">
                     <i class="bi bi-search"></i>
                 </button>
             </form>

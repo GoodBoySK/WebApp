@@ -32,6 +32,7 @@ namespace server.Services
         public async Task<Recipe?> GetRecipeByIdAsync(Guid recipeId)
         {
             return await dbContext.Recipes
+                .IgnoreQueryFilters()
                 .Include( recipe => recipe.Author)
                 .Include( recipe => recipe.DishType)
                 .Include( recipe => recipe.Ingredients)
@@ -62,14 +63,7 @@ namespace server.Services
         /// <exception cref="MediaFileNotFoundException"></exception>
         public async Task<bool> UpdateRecipe(UpdateRecipeDto recipeDto, Guid id)
         {
-            var recipe = await dbContext.Recipes
-                .Include(r => r.Instructions).ThenInclude(x => x.Media)
-                .Include(recipe => recipe.SpotPicture)
-                .ThenInclude(mediaFile => mediaFile.CreatedBy)
-                .Include(recipe => recipe.Author)
-                .Include(recipe => recipe.Ingredients)
-                .Include(recipe => recipe.Tags)
-                .FirstOrDefaultAsync(r => r.Id == id);
+            var recipe = await GetRecipeByIdAsync(id);
 
             var dishType = await dbContext.DishTypes.FindAsync(recipeDto.DishTypeId);
              
@@ -146,9 +140,10 @@ namespace server.Services
             return true;
         }
 
-        public async Task<ICollection<Recipe>> GetAllRecipesFilterAsync(Filter? filter, string userId)
+        public async Task<(ICollection<Recipe>, int)> GetAllRecipesFilterAsync(Filter? filter, string? userId)
         {
             IQueryable<Recipe> list = dbContext.Recipes
+                .IgnoreQueryFilters()
                 .Include(recipe => recipe.Author)
                 .Include(recipe => recipe.DishType)
                 .Include(recipe => recipe.Ingredients)
@@ -157,11 +152,11 @@ namespace server.Services
                 .Include(recipe => recipe.Comments).ThenInclude(comment => comment.CreatedBy)
                 .Include(recipe => recipe.Reviews).ThenInclude(reviews => reviews.AllReviews)
                 .Include(recipe => recipe.Tags)
-               ;
+                ;
 
             if (filter is null)
             {
-                return await list.ToListAsync();
+                return (await list.ToListAsync(), await list.CountAsync());
             }
 
             if (filter.NameFilter is not null)
@@ -174,7 +169,20 @@ namespace server.Services
                 list = list.Where(x => x.Author.Id == userId);
             }
 
-            return await list.ToListAsync();
+            if (filter.Order is not null)
+            {
+                switch (filter.Order) 
+                {
+                    case OrderBy.Name:
+                        list = filter.Ascending ? list.OrderBy(x => x.Name) : list.OrderByDescending(x => x.Name);
+                        break;
+                    case OrderBy.CreatedData:
+                        list = filter.Ascending ? list.OrderBy(x => x.CreatedAt) : list.OrderByDescending(x => x.CreatedAt);
+                        break;
+                }
+            }
+
+            return (await list.Skip((filter.Page - 1) * filter.PageSize).Take(filter.PageSize).ToListAsync(), await list.CountAsync());
         }
 
         public async Task<bool> DeleteRecipe(Guid id)

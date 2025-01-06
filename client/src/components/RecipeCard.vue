@@ -27,7 +27,7 @@
 						:key="n"
 						class="fa-regular fa-lemon"
 					></i>
-				</div>
+				</div>	
 			</div>
 		</div>
 	</div>
@@ -36,11 +36,11 @@
 <script setup lang="ts">
 import getUrlOfImage from '@/services/mediaFileService';
 import type { Recipe } from '@/services/recipeService';
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const {recipe} = defineProps<{recipe: Recipe}>();
-let urlSpotPicture = ref(getUrlOfImage(recipe.spotPicture?.id));
+let urlSpotPicture = computed(() => getUrlOfImage(recipe?.spotPicture?.id));
 let router = useRouter();
 
 function clicked() {

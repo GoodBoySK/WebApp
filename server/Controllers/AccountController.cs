@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using server.Dtos;
+using server.Dtos.User;
 using server.Interfaces;
 using server.Models;
 using server.Utlis;
@@ -37,7 +37,9 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
             BadRequest(Utils.ValidationError(ModelState));
         }
 
-        if (await userManager.FindByEmailAsync(bodyDto.Email) != null)
+        var existingUser = await userManager.FindByEmailAsync(bodyDto.Email);
+
+        if (existingUser != null)
         {
             return BadRequest(new ErrorMesage{ Message="User already exist with this email!!!"});
         }
@@ -64,6 +66,32 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
         return BadRequest(createdUser.Errors);
     }
 
+    [Authorize]
+    [HttpDelete]
+    public async Task<IActionResult> Unregister()
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (userId is null)
+        {
+            return Unauthorized();
+        }
+
+        var user = await userManager.FindByIdAsync(userId);
+
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        user.Deleted = true;
+        user.DeletedDate = DateTime.Now;
+
+        await userManager.UpdateAsync(user);
+
+        return NoContent();
+    }
+
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginDto model)
     {
@@ -77,6 +105,14 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
             return BadRequest(new ErrorMesage{
                 Message="Invalid Credentials",
                 Errors = [new ValidationMessage{Field=nameof(model.Email),Message="User with this email has not been found!!"}]                
+            });
+        }
+
+        if (user.Deleted) { 
+            return BadRequest(new ErrorMesage
+            {
+                Message = "Invalid Credentials",
+                Errors = [new ValidationMessage { Field = nameof(model.Email), Message = "User with this email has been deleted!!" }]
             });
         }
 
@@ -96,11 +132,20 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
         });
     }
 
-    [Authorize]
-    [HttpDelete]
-    public async Task<IActionResult> Unregister()
+
+    [HttpPost("logout")]
+    public async Task<IActionResult> LogOut()
     {
-        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        await signInManager.SignOutAsync();
+
+        return Ok();
+    }
+
+    [Authorize]
+    [HttpPut]
+    public async Task<IActionResult> UpdateUser(UpdateUserDto dto)
+    {
+         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
         if (userId is null)
         {
@@ -112,16 +157,18 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
         if (user == null)
         {
             return NotFound();
-        }
+        }        
 
-        var result = await userManager.DeleteAsync(user);
+        user.UserName = dto.NewName;
 
-        if (result.Succeeded)
-        {
-            return NoContent();
-        }
-
-        return BadRequest(new ErrorMesage{ Message="Failed to delete to user!!!"});
+        var result = await userManager.UpdateAsync(user);
+    
+        if (!result.Succeeded) return BadRequest(new ErrorMesage{
+                Message="Change user info failed!!!", 
+                Details=string.Join("\n", result.Errors.Select(x => x.Description))}
+            );
+ 
+        return Ok();
     }
 
     [HttpPost("requestResetPassword")]
@@ -162,7 +209,7 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
         var result = await userManager.ResetPasswordAsync(user, dto.Token, dto.NewPassword);
 
         if (!result.Succeeded) {
-            return BadRequest(new ErrorMesage{ Message="Password reset was not succesfull", Details=string.Join("\n", result.Errors)});
+            return BadRequest(new ErrorMesage{ Message="Password reset was not succesfull", Details=string.Join("\n", result.Errors.Select(e => e.Description))});
         }
 
         return Ok();

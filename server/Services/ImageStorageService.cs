@@ -34,6 +34,8 @@ public class ImageStorageService(AppDbContext dbContext) : IImageStorageService
 
         persist.Entity.CreatedBy = loggedUser;
 
+        persist.Entity.Size = image?.Length ?? 0;
+
         await dbContext.SaveChangesAsync();
         return persist.Entity;
     }

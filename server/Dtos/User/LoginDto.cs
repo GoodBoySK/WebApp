@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace server.Dtos;
+namespace server.Dtos.User;
 
 public class LoginDto
 {

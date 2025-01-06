@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 using server.Data;
 
 namespace server.Models;
-
 
 public class DishType
 {

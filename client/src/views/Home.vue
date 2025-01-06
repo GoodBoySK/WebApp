@@ -1,11 +1,12 @@
 <template>
 	<div class="container-fluid justify-content-center rubik">
+		<ErrorBanner :error="errors"/>
 		<banner class="mt-4"/>
 		<div class="container text-center mt-5 py-5">
 			<h5 class="text-primary roboto-medium fw-bolder">Recepty</h5>
 			<h1 class="display-3 fw-normal">Top dňa</h1>
 			<p class="fw-lighter text-black-50 mt-4 mb-3">
-				Najnavštevovanejšie recepty týždňa
+				Najnovšie recepty
 			</p>
 			<div class="d-flex justify-content-evenly mx-auto">
 				<recipe-card
@@ -26,40 +27,18 @@
 	</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import banner from "@/components/Banner.vue";
 import recipeCard from "@/components/RecipeCard.vue";
 import blogCard from "@/components/BlogCard.vue";
+import { onMounted, reactive, ref } from "vue";
+import { getRecipesByFilter, type Recipe } from "@/services/recipeService";
+import ErrorBanner from "@/components/ErrorBanner.vue";
+import { isApiError, type ApiError } from "@/services/apiService";
 
-let topRecipes = [
-	{
-		name: "Špagety s mäsovými guličkami a paradajkovou omáčkou",
-		thumbnailUrl:
-			"https://gurman.zoznam.sk/wp-content/uploads/2024/02/gurman-spagety-s-masovymi-gulickami-spagety-735x600.jpg",
-		author: {userName:"Michal Šovčík"},
-		time: 45,
-		portions: 20,
-		difficulty: 3,
-	},
-	{
-		name: "Bryndzové halušky s cibuľkou a slaninou",
-		thumbnailUrl:
-			"https://kuchynalidla.sk/storage/app/uploads/public/5fa/c0f/309/5fac0f309aa5a904284145.jpg",
-		author: {userName:"Michal Šovčík"},
-		time: 45,
-		portions: 20,
-		difficulty: 3,
-	},
-	{
-		name: "Žemľovka z vianočky s tvarohom a jablkami",
-		thumbnailUrl:
-			"https://kuchynalidla.sk/storage/app/uploads/public/5fa/c0f/114/5fac0f114e070703027746.jpg",
-		author: {userName: "Michal Šovčík"},
-		time: 45,
-		portions: 20,
-		difficulty: 3,
-	},
-];
+let topRecipes = reactive<Recipe[]>([]);
+
+let errors = ref<ApiError | null>(null)
 
 let recentBlogPosts = [
 	{
@@ -93,6 +72,18 @@ let recentBlogPosts = [
 		createdAt: "24 august 2024 14:38",
 	},
 ];
+
+onMounted(async () => {
+	let response = await getRecipesByFilter({ascending: false, order: "created_at", page: 1, pageSize: 3});
+
+	if (response[0]) {
+		Object.assign(topRecipes, response[0].recipes);
+	}
+	else if(response[1] && isApiError(response[1])) {
+		errors.value = response[1];
+	}
+
+});
 </script>
 
 <style lang="scss" scoped>

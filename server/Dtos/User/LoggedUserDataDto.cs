@@ -1,4 +1,4 @@
-﻿namespace server.Dtos;
+﻿namespace server.Dtos.User;
 
 public class LoggedUserDataDto
 {

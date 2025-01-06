@@ -15,12 +15,18 @@
 <script setup lang="ts">
 import getUrlOfImage from '@/services/mediaFileService';
 import type { MediaFile } from '@/services/recipeService';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 
 
 let mediaFile = defineModel<MediaFile>();
 
 let url = ref("");
+
+watch(mediaFile, (newValue) => {
+    if (newValue) {
+        url.value = getUrlOfImage(newValue.id + "");
+    }
+});
 
 onMounted(async () => {
     if (mediaFile.value ) {
@@ -40,8 +46,11 @@ function onFileChange(event: any) {
 
         const reader = new FileReader();
         reader.onload = () => {
-            if (typeof reader.result === 'string')
+            if (typeof reader.result === 'string') {
+                console.log("reader result: ");
+                console.log(reader.result);
                 url.value = reader.result ?? "";
+            }
         };
         reader.readAsDataURL(file);
     }

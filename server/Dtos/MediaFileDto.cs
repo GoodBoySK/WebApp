@@ -7,4 +7,5 @@ public class MediaFileDto
 {
     [Required]
     public int Id { get; set; }
+    public bool IsPresent { get; set; }
 }

@@ -205,6 +205,8 @@ async function save() {
 	}  
 	console.log(updateObject);
 	saveRecipeById(recipe.id, updateObject);
+
+	router.push("/recipe/" + recipe.id);
 }
 
 function deleteRecipe(){
