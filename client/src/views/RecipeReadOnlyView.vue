@@ -1,24 +1,25 @@
 <template>
 	<div v-if="loadingState == LoadingTypes.Loading" class="display-1">Loading ...</div>
 	<div v-if="loadingState == LoadingTypes.Error" class="display-1">Error has occured during loading</div>
-	<div v-else class="container px-5 rubik main">
+ 	<div v-else class="container-lg rubik main">
+		<ErrorBanner v-if="errors" :error="errors"></ErrorBanner>
 		<!-- Menu -->
 		<div class="d-flex w-100 flex-row-reverse">
-			<button @click="edit" class="btn btn-primary mx-2">
+			<button v-if="recipe.author?.id == loggedUser.id" @click="edit" class="btn btn-primary mx-2">
 				<i class="bi bi-pencil"></i>
 			</button>
 		</div>	
 		<!-- Hlavicka receptu -->
 		<div class="row my-5 recipe-head">
 			<!-- Deskripcia recepru -->
-			<div class="col">
+			<div class="col-lg h-auto">
 				<div class="d-flex">
 					<p
 						class="text-primary mx-2"
 						v-for="(tag, index) in recipe.tags"
 						:key="index"
 					>
-						{{ tag }}
+						{{ tag.name }}
 					</p>
 				</div>
 				<h1 class="fw-bold">{{ recipe.name }}</h1>
@@ -71,7 +72,7 @@
 			</div>
 			<!-- Thumbnail receptu -->
 			<img
-				class="col thumbnail"
+				class="col-lg thumbnail p-3 h-auto"
 				:src="thumbnailPhotoUrl"
 				alt="thumbnail"
 			/>
@@ -80,7 +81,7 @@
 		<!-- Suroviny -->
 		<h1 class="display-6 text-primary fw-medium my-4">Suroviny</h1>
 		<div class="bg-body-tertiary p-4 rounded-4 fs-5 shadow-sm">
-			<ul class="row row-cols-3">
+			<ul class="list-unstyled row row-cols-1 row-cols-xl-3 mb-0">
 				<li class="col my-2" v-for="(ingredient, index) in ingredients" :key="index">
 					<ingredient v-model="ingredients[index]"></ingredient>
 				</li>
@@ -98,16 +99,16 @@
 
 		<!-- New ranting/koments -->
 		<div class="m-3 mx-5" v-if="loggedUser">
-			<div class="row my-2">
-				<button class="btn btn-primary col my-auto me-5 rounded-pill w-auto">Pridat do obľúbených receptov <i class="bi bi-heart-fill"></i></button>
-				<div class="col bg-light rounded-4 d-flex">
-					<p class="text-primary h5 my-auto p-4">Ohodnotiť recept</p>
-					<stat-chose class="fs-2"></stat-chose>
+			<div class="row my-2 w-auto align-items-center row-cols-lg-2 row-cols-1">
+				<button class="btn btn-primary col my-auto me-lg-5 me-0 rounded-pill w-auto mx-auto">Pridat do obľúbených receptov <i class="bi bi-heart-fill"></i></button>
+				<div class="col bg-light rounded-4 d-flex my-1 row p-0 mx-0 mx-lg-2">
+					<p class="text-primary h5 my-auto p-2 p-md-4 col text-md-start text-center">Ohodnotiť recept</p>
+					<stat-chose class="fs-2 col-auto"></stat-chose>
 				</div>
 			</div>
 			<form class="row">
-				<textarea class="form-control rounded-4 bg-light my-3 fs-6 p-3" placeholder="Sem napiš text pre svoj komentár..." rows="5"></textarea>
-				<button class="ms-auto btn btn-primary w-auto rounded-pill px-3 py-2 me-4">Odoslať</button>
+				<textarea class="form-control rounded-4 bg-light my-3 fs-6 p-3" placeholder="Sem napiš text pre svoj komentár..." rows="5" v-model="commentText"></textarea>
+				<button @click="addComment" class="ms-auto btn btn-primary w-auto rounded-pill px-3 py-2 me-4">Odoslať</button>
 			</form>
 		</div>
 		<p v-else class="m-3 text-black-50">Ak chcete napísať komentár alebo pridať si recept medzi obľúbené recepty prosím prihláste sa</p>
@@ -119,7 +120,7 @@
 				>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" data-bs-toggle="tab" href="#reviews" aria-controls="reviews"
+				<a class="nav-link disabled" aria-disabled="true" data-bs-toggle="tab" href="#reviews" aria-controls="reviews"
 					>Recenzie</a
 				>
 			</li>
@@ -127,7 +128,7 @@
 
 		<div class="tab-content bg-body-tertiary">
 			<div id="comments" class="tab-pane fade show active" aria-labelledby="comments" >
-				<comment v-for="(com,index) in comments" :key="index" :commentObject="com"></comment>
+				<comment @deleted="reloadComments" v-for="(com,index) in comments" :key="index" :commentObject="com"></comment>
 			</div>
 			<div id="reviews" class="tab-pane fade" aria-labelledby="reviews">
 				<review v-for="(rew,index) in reviews" :key="index" :reviewObject="rew"></review>
@@ -145,14 +146,16 @@ import review from "@/components/Review.vue";
 import statChose from "@/components/StatChose.vue";
 import imageChoser from "@/components/ImageChoser.vue";
 import tag from "@/components/Tag.vue";
-import {getRecipeById, deleteRecipeById, saveRecipeById} from "@/services/recipeService";
-import {getLoggedUserInfo} from "@/services/authenticationService";
+import {getRecipeById, deleteRecipeById, saveRecipeById, addCommentToRecipe} from "@/services/recipeService";
+import {getLoggedUserInfo, type UserData} from "@/services/authenticationService";
 import getUrlOfImage from "@/services/mediaFileService";
 import { onMounted, reactive } from "vue";
 import { ref } from "vue";
 import type {Instruction, Recipe, Review, Comment, Tag, Ingredient} from "@/services/recipeService"
 import { useRouter } from "vue-router";
 import { LoadingTypes } from "@/LoadingTypes";
+import ErrorBanner from "@/components/ErrorBanner.vue";
+import {isApiError, type ApiError } from "@/services/apiService";
 
 
 let { id } = defineProps(["id"]);
@@ -161,13 +164,17 @@ let recipe = reactive<Recipe>({id: "", name: "", description: "",difficulty: 0, 
 let instructions = reactive<Instruction[]>([]);
 let ingredients  = reactive<Ingredient[]>([]);
 let thumbnailPhotoUrl = ref("");
-let loggedUser = reactive({});
-let loadingState = ref<LoadingTypes>(LoadingTypes.Loading);
 let tags = reactive<Tag[]>([]);
+let comments = reactive<Comment[]>([]);
 
+let loadingState = ref<LoadingTypes>(LoadingTypes.Loading);
+let loggedUser = reactive<UserData>({id: "", userName:"", email: ""});
 let router = useRouter();
 
 let recipeOriginal:Recipe;
+let commentText = ref("");
+
+let errors = ref<ApiError | null>(null);
 
 onMounted(async () => {
 	let response = await getRecipeById(id);
@@ -183,7 +190,8 @@ onMounted(async () => {
 			thumbnailPhotoUrl.value = getUrlOfImage(recipe.spotPicture.id + "");
 		}
 
-		loggedUser = getLoggedUserInfo();
+		Object.assign(comments, recipe.comments ?? []);
+		loggedUser = await getLoggedUserInfo() ?? {id: "", userName:"", email: ""};
 		loadingState.value = LoadingTypes.Done;
 	} 
 	else {
@@ -191,81 +199,32 @@ onMounted(async () => {
 	}
 });
 
+async function reloadComments() {
+	let response = await getRecipeById(id);
+	if (response[0]) {
+		Object.assign(comments, response[0].comments ?? []);
+	}
+	else {
+		loadingState.value = LoadingTypes.Error;
+	}
+	
+}
+
+async function addComment() {
+	let response = await addCommentToRecipe(id, {text: commentText.value});
+
+	if (response[0]) {
+		reloadComments();
+		commentText.value = "";
+	}
+	else if(response[1] && isApiError(response[1])) {
+		errors.value = response[1];
+	}
+}
 
 function edit() {
 	router.push("/recipe/" + id + "/edit");
 }
-// let recipe = {
-// 	title: "Chutný a jednoduchý zemiakový šalát – perfektný recept pre lenivé gazdinky",
-// 	tags: ["Mnam", "Ham", "Pam"],
-// 	description:
-// 		"Ak ste milovníkov zemiakov a zemiakového šalátu, tento recept musíte vyskúšať! Chutný a jednoduchý zemiakový šalát z pár ingrediencii pre lenivé gazdinky môžete podávať klasicky s vyprážaným rezňom prípadne s „falošným rezňom“ – vyprážanou sekanou.",
-// 	autor: {
-// 		name: "Michal Šovčik",
-// 	},
-// 	dificulty: 3,
-// 	portions: 5,
-// 	time: 120,
-// };
-
-// let instructions = [
-// 	{
-// 		position: 1,
-// 		media: "https://gurman.zoznam.sk/wp-content/uploads/2024/02/gurman-mac-and-cheese-struhadlo-768x576.jpeg",
-// 		description:
-// 			"Makaróny dáme variť do osolenej vody, varíme do stavu „al dente“. Začneme s nastrúhaním cheddaru na strúhadle. Rúru dáme vyhrievať na 200 stupňov.",
-// 	},
-// 	{
-// 		position: 2,
-// 		media: "https://gurman.zoznam.sk/wp-content/uploads/2024/02/gurman-mac-and-cheese-struhadlo-768x576.jpeg",
-// 		description:
-// 			"Makaróny dáme variť do osolenej vody, varíme do stavu „al dente“. Začneme s nastrúhaním cheddaru na strúhadle. Rúru dáme vyhrievať na 200 stupňov.",
-// 	},
-// 	{
-// 		position: 3,
-// 		description:
-// 			"Makaróny dáme variť do osolenej vody, varíme do stavu „al dente“. Začneme s nastrúhaním cheddaru na strúhadle. Rúru dáme vyhrievať na 200 stupňov.",
-// 	},
-// 	{
-// 		position: 15,
-// 		media: "https://gurman.zoznam.sk/wp-content/uploads/2024/02/gurman-mac-and-cheese-struhadlo-768x576.jpeg",
-// 		description:
-// 			"Makaróny dáme variť do osolenej vody, varíme do stavu „al dente“. Začneme s nastrúhaním cheddaru na strúhadle. Rúru dáme vyhrievať na 200 stupňov.",
-// 	},
-// 	{
-// 		position: 25,
-// 		media: "https://gurman.zoznam.sk/wp-content/uploads/2024/02/gurman-mac-and-cheese-struhadlo-768x576.jpeg",
-// 		description:
-// 			"Makaróny dáme variť do osolenej vody, varíme do stavu „al dente“. Začneme s nastrúhaním cheddaru na strúhadle. Rúru dáme vyhrievať na 200 stupňov.",
-// 	},
-// ];
-
-let comments = [
-	{
-		autor: {
-			name: "Michal Šovčík",
-		},
-		text: "Perfektne torta uplne uzasna este 20 rokov osm sa zalizoval ale chybalo tam trochu soli kvoli pocasiu.",
-		pinned: false,
-		createdAt: "19.1.2023 23:55"
-	},
-	{
-		autor: {
-			name: "Michal Šovčík",
-		},
-		text: "Perfektne torta uplne uzasna este 20 rokov osm sa zalizoval ale chybalo tam trochu soli kvoli pocasiu.",
-		pinned: true,
-		createdAt: "19.1.2023 23:55"
-	},
-	{
-		autor: {
-			name: "Michal Šovčík",
-		},
-		text: "Perfektne torta uplne uzasna este 20 rokov osm sa zalizoval ale chybalo tam trochu soli kvoli pocasiu.",
-		pinned: false,
-		createdAt: "19.1.2023 23:55"
-	},
-];
 
 let reviews = [
 	{
@@ -304,16 +263,24 @@ let reviews = [
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/main.scss";
+
+
 .thumbnail {
-	object-fit: cover;
+	object-fit: scale-down;
 	object-position: center;
 	width: 100%;
 	height: 100%;
+	max-height: 20rem;
 }
 .recipe-head {
-	max-height: 40rem;
+	//min-height: 20rem;
 }
 .main {
 	max-width: 70%;
+	@include media-breakpoint-down(lg) {
+        max-width: 90%;
+    }
+ 
 }
 </style>

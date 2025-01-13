@@ -32,9 +32,11 @@ namespace server.Utlis
         public static CommentDto ToDto(this Comment comment) =>
         new() 
         {
+            Id = comment.Id,
             Text = comment.Text,
             CreatedAt = comment.CreatedAt,
             Parent = comment.Parent,
+            CreatedBy = comment.CreatedBy
         };
 
         public static MediaFileDto ToDto(this MediaFile mediaFile) =>

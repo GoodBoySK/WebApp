@@ -1,15 +1,17 @@
 <template>
-    <div class="col border border-1 border-black border-opacity-50 d-flex px-0 flex-column justify-content-end">
-            <img
-                class="thumbnail"
-                :src="url"
-                alt="Nexistuje ziadny obrazok"
-            />
-            <div class="d-flex">
-                <input @change="onFileChange" class="form-control border border-1 border-black border-opacity-50 rounded-0 align-self-end mt-auto" type="file" id="formFile" >
-                <button type="button" class="btn btn-primary rounded-0" @click="removePicture"><i class="bi bi-trash-fill"></i></button>
+    <div class="d-block">
+        <div class="col border border-1 border-black border-opacity-50 d-flex px-0 flex-column justify-content-end ">
+                <img
+                    class="thumbnail"
+                    :src="url"
+                    alt="Nexistuje ziadny obrazok"
+                />
+                <div class="d-flex">
+                    <input @change="onFileChange" class="form-control border border-1 border-black border-opacity-50 rounded-0 align-self-end mt-auto" type="file" id="formFile" >
+                    <button type="button" class="btn btn-primary rounded-0" @click="removePicture"><i class="bi bi-trash-fill"></i></button>
+                </div>
             </div>
-        </div>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -77,5 +79,6 @@ function removePicture() {
 	object-fit: scale-down;
 	object-position: center;
 	height: 100%;
+    width: 100%;
 }
 </style>

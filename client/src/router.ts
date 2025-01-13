@@ -20,7 +20,8 @@ let router = createRouter({
     history: createWebHashHistory(),
     routes: [
         {path: '/', component: Home },
-        {path: '/explore', component: Explore },
+        {path: '/explore', component: Explore, props: true},
+        {path: '/explore/:default', component: Explore, props: true},
         {path: '/tips', component: Tips },
         {path: '/blog', component: BlogPosts },
         {path: '/login', component: LoginView , meta: {hideNavbar: true}},

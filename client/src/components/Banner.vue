@@ -7,20 +7,17 @@
 			class="px-2 pt-4 pb-4 justify-content-center text-center align-self-center mx-auto mb-5"
 		>
 			<h1 class="mb-4 mt-2 text-white display-2">Vyhľadaj si recept</h1>
-			<form action="">
+			<form @submit="search" action="">
 				<div class="input-group mb-3 shadow input-group-lg">
 					<input
 						placeholder="Hľadať recept"
-						class="form-control px-3 py-3"
+						class="form-control px-md-3 px-1 py-3"
 						type="text"
 						name="name"
 						id=""
+						v-model="text"
 					/>
-					<select class="form-select">
-						<option value="" disabled selected>Kategórie</option>
-						<option value="">1</option>
-					</select>
-					<button class="btn btn-primary">
+					<button class="btn btn-primary" type="submit">
 						<i class="bi bi-search p-2"></i>
 					</button>
 				</div>
@@ -29,7 +26,16 @@
 	</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+
+let router = useRouter();
+let text = ref("");
+
+function search() {
+	router.push("/explore/" + text.value);
+}
 
 </script>
 
@@ -54,6 +60,10 @@
 	min-height: 30rem;
 	> div {
 		max-width: 70%;
+		@include media-breakpoint-down(md) {
+		max-width: 90%;
 	}
+	}
+	
 }
 </style>

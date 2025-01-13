@@ -6,6 +6,7 @@ namespace server.Models
     public class Filter
     {
         public string? NameFilter { get; set; }
+        public string? TagFilter { get; set; }
         public bool? OnlyMy { get; set; }
         [Range(1, int.MaxValue)]
         public int PageSize { get; set; } = 10;

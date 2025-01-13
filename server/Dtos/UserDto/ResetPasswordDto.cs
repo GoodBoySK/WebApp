@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace server.Dtos.User
+namespace server.Dtos.UserDro
 {
     public class ResetPasswordDto
     {

@@ -16,7 +16,7 @@
 				</button>
 			</div>
 		</form>
-		<div class="row row-cols-3 pt-5">
+		<div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 pt-5">
 			<div v-for="(n,index) in recipes" :key="index" class="col p-2">
 				<RecipeCard :recipe="n"></RecipeCard>
 			</div>
@@ -38,13 +38,15 @@ import ErrorBanner from '@/components/ErrorBanner.vue';
 import { isApiError, type ApiError } from '@/services/apiService';
 import RecipeCard from '@/components/RecipeCard.vue';
 
+let props = defineProps<{default:string}>();
+
 let recipes = ref<Recipe[]>([]);
 let errors = ref<ApiError | null>(null)
 
 let currentPage = ref<number>(1);
 let maxPage = ref<number>(1);
 
-const pageSize = 2;
+const pageSize = 10;
 
 let count = ref<number>(0);
 
@@ -78,6 +80,7 @@ function goToPage(page: number)
 
 
 onMounted(async () => {
+	form.value.nameFilter = props.default;
 	search();
 });
 

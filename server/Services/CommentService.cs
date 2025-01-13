@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using server.Data;
 using server.Dtos;
 using server.Interfaces;
@@ -25,6 +26,15 @@ namespace server.Services
             
             await dbContext.SaveChangesAsync();
             return comment;
+        }
+
+        public async Task<bool> IsOwner(Guid commentId, User user)
+        {
+            var comment = await dbContext.Comments.Include(x => x.CreatedBy).FirstOrDefaultAsync(x => x.Id == commentId);
+
+            if (comment == null) return false;
+        
+            return comment.CreatedBy.Id == user.Id;
         }
 
         public async Task<bool> DeleteComment(Guid commentId, User user)

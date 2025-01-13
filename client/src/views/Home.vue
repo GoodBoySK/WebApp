@@ -2,19 +2,18 @@
 	<div class="container-fluid justify-content-center rubik">
 		<ErrorBanner :error="errors"/>
 		<banner class="mt-4"/>
-		<div class="container text-center mt-5 py-5">
+		<div class="container-fluid text-center mt-5 py-5">
 			<h5 class="text-primary roboto-medium fw-bolder">Recepty</h5>
 			<h1 class="display-3 fw-normal">Top dňa</h1>
 			<p class="fw-lighter text-black-50 mt-4 mb-3">
 				Najnovšie recepty
 			</p>
-			<div class="d-flex justify-content-evenly mx-auto">
-				<recipe-card
+			<div class="row row-cols-1 row-cols-xl-3 mx-auto justify-content-center align-items-center ">
+				<div class="col py-3"
 					v-for="(tempRecipe, index) in topRecipes"
-					:key="index"
-					:recipe="tempRecipe"
-					class="m-3"
-				/>
+					:key="index">
+					<recipe-card :recipe="tempRecipe" class="mx-auto"/>
+				</div>
 			</div>
 		</div>
 		<div class="container text-center">
@@ -35,43 +34,13 @@ import { onMounted, reactive, ref } from "vue";
 import { getRecipesByFilter, type Recipe } from "@/services/recipeService";
 import ErrorBanner from "@/components/ErrorBanner.vue";
 import { isApiError, type ApiError } from "@/services/apiService";
+import { getBlogPosts, type BlogPost } from "@/services/blogservice";
 
 let topRecipes = reactive<Recipe[]>([]);
 
 let errors = ref<ApiError | null>(null)
 
-let recentBlogPosts = [
-	{
-		thumbnailUrl:
-			"https://gurman.zoznam.sk/wp-content/uploads/2024/10/pancakes-2020863_1280-590x332.jpg",
-		title: "4 praktické tipy, ako využiť tvrdé a suché pečivo",
-		description:
-			"Tvrdý chlieb či pečivo určite nemusia skončiť v odpadkoch. Využite ich celé.",
-		cardTag: "Triky",
-		autor: "Michal Šovčík",
-		createdAt: "24 august 2024 14:38",
-	},
-	{
-		thumbnailUrl:
-			"https://gurman.zoznam.sk/wp-content/uploads/2024/10/pancakes-2020863_1280-590x332.jpg",
-		title: "4 praktické tipy, ako využiť tvrdé a suché pečivo",
-		description:
-			"Tvrdý chlieb či pečivo určite nemusia skončiť v odpadkoch. Využite ich celé.",
-		cardTag: "Triky",
-		autor: "Michal Šovčík",
-		createdAt: "24 august 2024 14:38",
-	},
-	{
-		thumbnailUrl:
-			"https://gurman.zoznam.sk/wp-content/uploads/2024/10/pancakes-2020863_1280-590x332.jpg",
-		title: "4 praktické tipy, ako využiť tvrdé a suché pečivo",
-		description:
-			"Tvrdý chlieb či pečivo určite nemusia skončiť v odpadkoch. Využite ich celé.",
-		cardTag: "Triky",
-		autor: "Michal Šovčík",
-		createdAt: "24 august 2024 14:38",
-	},
-];
+let recentBlogPosts = ref<BlogPost[] | null>(null);
 
 onMounted(async () => {
 	let response = await getRecipesByFilter({ascending: false, order: "created_at", page: 1, pageSize: 3});
@@ -83,6 +52,14 @@ onMounted(async () => {
 		errors.value = response[1];
 	}
 
+	let reponseBlogs = await getBlogPosts({ascending: false, order: "created_at", page: 1, pageSize: 3});
+
+	if (reponseBlogs[0]) {
+		recentBlogPosts.value = reponseBlogs[0].blogs;
+	}
+	else if(reponseBlogs[1] && isApiError(reponseBlogs[1])) {
+		errors.value = reponseBlogs[1];
+	}
 });
 </script>
 

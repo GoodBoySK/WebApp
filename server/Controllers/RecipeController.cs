@@ -161,6 +161,11 @@ public class RecipeController(IRecipeService recipeService, UserManager<User> us
         {
             return BadRequest(new ErrorMesage { Message = "Logged user not found in db." });
         }
+
+        if (!await commentService.IsOwner(commentId, user))
+        {
+            return Forbid();
+        }
        
         if (!await commentService.DeleteComment(commentId ,user))
         {

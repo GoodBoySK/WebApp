@@ -7,7 +7,7 @@
 		<div class="card-body roboto d-flex flex-column">
 			<h4 class="card-title">{{ recipe.name }}</h4>
 			<a class="card-subtitle flex-grow-1">{{ recipe.author?.userName }}</a>
-			<div class="justify-content-evenly d-flex fs-6 text-center">
+			<div class="justify-content-evenly d-flex fs-6 text-center row">
 				<div class="col">
 					<i class="bi bi-clock-history d-inline pe-1"></i>
 					<p class="d-inline">{{ recipe.time + " min" }}</p>
@@ -54,7 +54,8 @@ function clicked() {
 $card-width: 26rem;
 $card-height: 26rem;
 .card {
-	width: $card-width;
+	max-width: $card-width;
+	min-width: $card-width - 6rem;
 	height: $card-height;
 	box-shadow: $box-shadow-sm;
 	transition-duration: $transition-base-duration;

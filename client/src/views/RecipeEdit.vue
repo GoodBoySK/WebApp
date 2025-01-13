@@ -1,7 +1,7 @@
 <template>
     <div v-if="loadingState == LoadingTypes.Loading" class="display-1">Loading ...</div>
     <div v-if="loadingState == LoadingTypes.Error" class="display-1">Error has occured during loading</div>
-	<div v-else class="container main">
+	<div v-else class="container-lg px-0 main">
 		<!-- Menu -->
 		<div class="d-flex w-100 flex-row-reverse">
 			<button @click="save" class="btn btn-primary mx-2">
@@ -11,11 +11,11 @@
 				<i class="bi bi-trash-fill"></i>
 			</button>
 		</div>	
-		<form class="px-5 rubik ">
+		<form class="px-0 rubik ">
 				<!-- Hlavicka receptu -->
 				<div class="row my-5 recipe-head">
 					<!-- Deskripcia recepru -->
-					<div class="col">
+					<div class="col-lg-6">
 						<div class="d-flex">
 							<tag
 								v-for="(tag, index) in tags"
@@ -32,56 +32,64 @@
 							
 						<autor-label :autor="recipe.author"></autor-label>
 		
-						<div class="justify-content-evenly d-flex fs-6 text-center mt-2">
-							<div class="col input-group">
-								<i class="input-group-text bi bi-clock-history px-2"></i>
-								<div class="form-floating">
-									<label
-										class="fw-light pt-1"
-										for="timeInput"
-									>
-										TRVANIE
-									</label>
-									<input id="timeInput" placeholder="minúty..." type="number" class="form-control" min="0" v-model="recipe.time">
-								</div>
-								<p class="input-group-text text-center mb-0">min</p>
+						<div class="fs-6 text-center mt-2 row row-cols-1 row-cols-lg-3 mx-0">
+							<div class="col px-0">
+								<div class="input-group">
+									<i class="input-group-text bi bi-clock-history px-2"></i>
+									<div class="form-floating">
+										<label
+											class="fw-light pt-1"
+											for="timeInput"
+										>
+											TRVANIE
+										</label>
+										<input id="timeInput" placeholder="minúty..." type="number" class="form-control" min="0" v-model="recipe.time">
+									</div>
+									<p class="input-group-text text-center mb-0">min</p>
+								</div>	
 							</div>
-							<div class="col input-group mx-2">
-								<i class="faIconCenter input-group-text fa-solid fa-bowl-food px-2"></i>
-								<div class="form-floating">
-									<label
-										class="pt-1 fw-light"
-										for="portionsInput"
-									>
-										Porcie
-									</label>
-									<input id="portionsInput" class="form-control" v-model="recipe.portions" type="number" min="0"></input>
+							<div class="col px-lg-2 px-0">
+								<div class="input-group">
+									<i class=" input-group-text fa-solid fa-bowl-food d-flex px-2 align"></i>
+									<div class="form-floating">
+										<label
+											class="pt-1 fw-light"
+											for="portionsInput"
+										>
+											Porcie
+										</label>
+										<input id="portionsInput" class="form-control" v-model="recipe.portions" type="number" min="0"></input>
+									</div>
 								</div>
 							</div>
-							<div class="col input-group">
-								<i class="faIconCenter input-group-text fa-solid fa-lemon px-2"></i>
-								<div class="form-floating">
-									<label
-										class="pt-2 fw-light"
-										for="diificultyInput"
-									>
-										Náročnosť
-									</label>
-									<input id="diificultyInput" class="form-control" v-model="recipe.difficulty" type="number" min="0" max="5"></input>
+							<div class="col px-0">
+								<div class="input-group">
+									<i class=" input-group-text fa-solid fa-lemon d-flex px-2"></i>
+									<div class="form-floating">
+										<label
+											class="pt-2 fw-light"
+											for="diificultyInput"
+										>
+											Náročnosť
+										</label>
+										<input id="diificultyInput" class="form-control" v-model="recipe.difficulty" type="number" min="0" max="5"></input>
+									</div>
+									<p class="input-group-text mb-0">/5</p>
 								</div>
-								<p class="input-group-text mb-0">/5</p>
 							</div>
 						</div>
 					</div>
 					<!-- Thumbnail receptu -->
-					<image-choser class="col h-100" v-model="recipe.spotPicture"></image-choser>
+					 <div class="col-lg-6">
+						<image-choser  v-model="recipe.spotPicture"></image-choser>
+					 </div>
 				</div>
 				<!-- TODO recenzie -->
 				<!-- Suroviny -->
 				<h1 class="display-6 text-primary fw-medium my-4">Suroviny</h1>
 				<div class="bg-body-tertiary p-4 rounded-4 fs-5 shadow-sm">
-					<ul class="row row-cols-3">
-						<li class="col my-2" v-for="(ingredient, index) in ingredients" :key="index">
+					<ul class="row row-cols-1 row-cols-xl-3 mb-0 list-unstyled">
+						<li class="col my-2 px-0" v-for="(ingredient, index) in ingredients" :key="index">
 							<ingredient editable v-model="ingredients[index]" @remove-ingredient="removeIngredient"></ingredient>
 						</li>
 						<li class="col my-2">
@@ -204,14 +212,16 @@ async function save() {
 		tags: JSON.parse(JSON.stringify(tags)),
 	}  
 	console.log(updateObject);
-	saveRecipeById(recipe.id, updateObject);
-
-	router.push("/recipe/" + recipe.id);
+	let res = await saveRecipeById(recipe.id, updateObject);
+	if (res)
+		router.push("/recipe/" + recipe.id);
+	else
+		loadingState.value = LoadingTypes.Error;
 }
 
-function deleteRecipe(){
+async function deleteRecipe(){
 	if (confirm("Naozaj chceš zmazať tento recept?")) {
-		deleteRecipeById(recipe.id);
+		await deleteRecipeById(recipe.id);
 		router.push("/");
 	}
 }
@@ -255,7 +265,7 @@ function addInstriuction() {
 <style lang="scss" scoped>
 
 .recipe-head {
-	height: 30rem;
+	min-height: 40rem;
 }
 .main {
 	max-width: 70%;

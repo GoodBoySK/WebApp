@@ -60,7 +60,7 @@ let pages = [
 	},
 	{
 		title: "Objav",
-		link: "/explore",
+		link: "/explore/",
 	},
 	{
 		title: "Tipy a triky",

@@ -1,13 +1,27 @@
 <template>
     <div v-if="!editable" class="d-flex align-top main-container py-4">
         <p class="border px-3 me-3 py-2 my-auto rounded-3 align-self-center order text-center">{{ instruction?.position }}</p>
-        <img class="border" v-if="instruction?.media && instruction.media.isPresent" :src="photoUrl" />
-        <p class="mb-0 w-auto p-4 border ">{{ instruction?.description }}</p>
+        <div class="d-flex flex-wrap flex-lg-row flex-column w-100 h-100 align-self-center">
+            <div  v-if="instruction?.media && instruction.media.isPresent" class="flex-shrink-0">
+                <img class="border img-fluid" :src="photoUrl" />
+            </div>
+            <div class=" flex-grow-1 col">
+                <p class=" h-100 w-100  p-1 border border-1">{{ instruction?.description }}</p>
+            </div>
+        </div>
     </div>
     <div v-else class="d-flex align-top main-container py-4">
         <input class="border px-3 me-3 py-2 my-auto rounded-3 align-self-center order text-center" type="text" placeholder="0" v-model="instruction!.position"></input>
-        <imageChoser v-if="instruction?.media" v-model="instruction.media" class="imgChoser"></imageChoser>
-        <textarea class="mb-0 w-auto p-4 border flex-fill" type="text" placeholder="Postup receptu..." v-model="instruction!.description"></textarea>
+        
+        <div class="d-flex flex-wrap flex-lg-row flex-column w-100 h-100">
+            <div  v-if="instruction?.media" class="">
+                <imageChoser  v-model="instruction.media" class="imgChoser img-fluid"></imageChoser>
+            </div>
+            <div class=" flex-grow-1">
+                <textarea class="mb-0 w-100 h-100 p-4 border " type="text" placeholder="Postup receptu..." v-model="instruction!.description"></textarea>
+            </div>
+        </div>
+        
     </div>
 </template>
 
@@ -33,7 +47,8 @@ onMounted(async () => {
 img
 {
     width: 20rem;
-    height: 16rem;
+    max-height: 16rem;
+    object-fit: scale-down;
 }
 textarea {
     resize: none;
@@ -45,7 +60,7 @@ textarea {
 .main-container{
     position: relative;
     min-height: 15rem;
-    max-height: 25rem;
+    max-height: 45rem;
 }
 .main-container:not(:last-child):after
 {

@@ -90,8 +90,9 @@ export interface CreateRecipe {
     name: string
 }
 
-export interface RecipedFilter {
+export interface Filter {
     nameFilter?: string;
+    tagFilter?: string;
     onlyMy?: boolean;
     pageSize?: number;
     page?: number;
@@ -102,6 +103,11 @@ export interface RecipedFilter {
 export interface RecipeFilterResponse {
     recipes: Recipe[];
     allCount: number;
+}
+
+export interface AddComment {
+    text: string;
+    parentId?: string;
 }
 
 export async function createRecipe(nazov:string) : Promise<[recipe:Recipe | undefined,errors: any | ApiError]>
@@ -143,8 +149,21 @@ export async function deleteRecipeById(id : string) : Promise<any | ApiError>
     return response;
 }
 
-export async function getRecipesByFilter(filter?: RecipedFilter) : Promise<[RecipeFilterResponse | undefined, any | ApiError]>{
+export async function getRecipesByFilter(filter?: Filter) : Promise<[RecipeFilterResponse | undefined, any | ApiError]>{
     let response = await apiService.post<RecipeFilterResponse>('recipe/all', filter);
     
     return response;
 }
+
+export async function addCommentToRecipe(recipeId: string, addComment :AddComment) : Promise<[Comment | undefined,any | ApiError]>
+{
+    let response = await apiService.post<Comment>(`recipe/${recipeId}/comment`, addComment);
+
+    return response;
+}
+
+export async function deleteComment(id:string) : Promise<any | ApiError>{
+    let response = await apiService.delete(`recipe/comment/${id}`);
+    return response;
+}
+

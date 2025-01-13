@@ -3,7 +3,7 @@
     <div class="bg d-block p-1">
         <div class="container my-4">
             <error-banner :error="errors"></error-banner>
-            <form @submit.prevent="resetPassword" class="bg-white p-5 mx-auto my-5 rounded-3 shadow-lg">
+            <form @submit.prevent="resetPassword" class="bg-white p-lg-5 p-4 mx-auto my-5 rounded-3 shadow-lg">
                 <h1 class="fw-semibold text-center my-4">Resetuj si heslo</h1>
                 <div class=" mb-3 m-2">
                     <label class="h6">Emailová adresa</label>
@@ -53,8 +53,21 @@ function validate()
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/main.scss";
+
+
 form {
     width: 40rem;
+    @include media-breakpoint-down(lg) {
+        width: 35rem;
+    }
+    @include media-breakpoint-down(md) {
+        width: 25rem;
+    }
+    @include media-breakpoint-down(sm) {
+        width: 20rem;
+    }
+ 
 }
 div.container {
     min-height: 75vh;
