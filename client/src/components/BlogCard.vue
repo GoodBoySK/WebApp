@@ -2,7 +2,7 @@
 	<div class="card text-start rounded-5 m-4">
 		<div class="row h-100 row-cols-1 align-items-center justify-content-center p-1">
 			<div class="float-image overflow-hidden rounded-5 px-0 col">
-				<RouterLink to="/blog/{{ blogPost.id }}">
+				<RouterLink :to="'/blog/'+blogPost.id">
 					<img
 						:src="urlSpotPicture"
 						alt="thubmbnail"
@@ -18,7 +18,7 @@
 					<p class="mb-0 text-black-50 fw-light">
 						{{ blogPost.createdAt }}
 					</p>
-					<a class="card-title h3 text-decoration-none" href="@">{{ blogPost.title }}</a>
+					<RouterLink :to="'/blog/'+blogPost.id" class="card-title h3 text-decoration-none">{{ blogPost.title }}</RouterLink>
 					<p class="card-text fw-light">{{ blogPost.desctiption }}</p>
 					<button @click="clicked" class="btn btn-primary rounded-pill px-3">
 						Čítaj viac

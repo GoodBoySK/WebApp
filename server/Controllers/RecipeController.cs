@@ -41,7 +41,7 @@ public class RecipeController(IRecipeService recipeService, UserManager<User> us
         }
 
         var recipes = await recipeService.GetAllRecipesFilterAsync(filter, userId);
-        return Ok(new {recipes = recipes.Item1, allCount = recipes.Item2});
+        return Ok(new {recipes = recipes.Item1.Select(x => x.ToDto()), allCount = recipes.Item2});
     }
 
     [Authorize]

@@ -99,7 +99,7 @@
 
 		<!-- New ranting/koments -->
 		<div class="m-3 mx-5" v-if="loggedUser">
-			<div class="row my-2 w-auto align-items-center row-cols-lg-2 row-cols-1">
+			<div aria-disabled="true" class="disabled row my-2 w-auto align-items-center row-cols-lg-2 row-cols-1">
 				<button class="btn btn-primary col my-auto me-lg-5 me-0 rounded-pill w-auto mx-auto">Pridat do obľúbených receptov <i class="bi bi-heart-fill"></i></button>
 				<div class="col bg-light rounded-4 d-flex my-1 row p-0 mx-0 mx-lg-2">
 					<p class="text-primary h5 my-auto p-2 p-md-4 col text-md-start text-center">Ohodnotiť recept</p>

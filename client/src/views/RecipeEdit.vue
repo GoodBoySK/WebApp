@@ -105,6 +105,7 @@
 						:key="instructionVar.position"
 						v-model="instructions[index]"
 						editable
+						@remove-instruction="removeInstruction"
 					/>
 					<button @click="addInstriuction" class="btn btn-primary"><i class="bi bi-plus-circle-fill"></i></button>
 		
@@ -213,7 +214,7 @@ async function save() {
 	}  
 	console.log(updateObject);
 	let res = await saveRecipeById(recipe.id, updateObject);
-	if (res)
+	if (!res)
 		router.push("/recipe/" + recipe.id);
 	else
 		loadingState.value = LoadingTypes.Error;
@@ -259,6 +260,17 @@ function addInstriuction() {
 	instructions.push(instruction);
 }
 
+function removeInstruction(obj:Instruction)
+{
+	const index = instructions.findIndex(item => item == obj);
+	if (index !== -1) {
+		instructions.splice(index, 1);
+	}
+
+	for (let i = 0; i < instructions.length; i++) {
+		instructions[i].position = i + 1;
+	}
+}
 
 </script>
 

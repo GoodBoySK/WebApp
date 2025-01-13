@@ -21,7 +21,9 @@
                 <textarea class="mb-0 w-100 h-100 p-4 border " type="text" placeholder="Postup receptu..." v-model="instruction!.description"></textarea>
             </div>
         </div>
-        
+        <button v-if="editable" type="button" class="btn btn-link px-2">
+            <i class="d-inline bi bi-x-octagon-fill " @click="remove"></i>
+        </button>
     </div>
 </template>
 
@@ -34,12 +36,17 @@ import imageChoser from './ImageChoser.vue';
 const {editable} = defineProps({editable:Boolean});
 let instruction = defineModel<Instruction>();
 let photoUrl = ref("");
+let emit = defineEmits(['removeInstruction']);
 
 onMounted(async () => {
     if (instruction.value && instruction.value.media ) {
     	photoUrl.value = getUrlOfImage(instruction.value.media.id + "");
 	}
 });
+
+function remove() {
+    emit('removeInstruction', instruction.value);
+}
 
 </script>
 

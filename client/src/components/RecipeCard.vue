@@ -1,6 +1,6 @@
 <template>
 	<div class="card text-start rounded-4 overflow-hidden" @click="clicked">
-		<div class="h-auto overflow-hidden position-relative">
+		<div v-if="recipe.spotPicture.isPresent" class="h-auto overflow-hidden position-relative">
 			<img class="img-fluid" :src="urlSpotPicture" alt="Thumbnail" />
 			<div class="overlay"></div>
 		</div>
@@ -42,6 +42,8 @@ import { useRouter } from 'vue-router';
 const {recipe} = defineProps<{recipe: Recipe}>();
 let urlSpotPicture = computed(() => getUrlOfImage(recipe?.spotPicture?.id));
 let router = useRouter();
+
+console.log(recipe.spotPicture);
 
 function clicked() {
 	router.push("/recipe/" + recipe.id);
